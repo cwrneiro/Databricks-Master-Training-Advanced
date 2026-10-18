@@ -1,0 +1,6 @@
+resources:
+  schemas:
+    aluno:
+      catalog_name: ${var.catalog}
+      name: ${var.aluno}
+      comment: Schema do aluno ${var.aluno} no workshop Vida+ Saúde

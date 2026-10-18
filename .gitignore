@@ -1,0 +1,6 @@
+.claude/settings.local.json
+.isaac/
+# Notas internas do desenvolvimento (issues, map, spikes): ficam só na máquina, fora do repo público.
+.scratch/
+__pycache__/
+.databricks/

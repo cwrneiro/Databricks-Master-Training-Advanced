@@ -1,0 +1,16 @@
+schema_version = 1
+
+[agent]
+framework = "langgraph"
+server = "agentbricks"
+
+# Lojas gerenciadas do Agent Runtime e experimento de tracing, uma de cada por aluno.
+# O agentbricks deploy cria as que ainda não existem.
+[memory_store]
+name = "edia-troque_pelo_seu_nome-memoria"
+
+[session_store]
+name = "edia-troque_pelo_seu_nome-sessoes"
+
+[tracing]
+experiment_name = "/Shared/agentbricks_traces/edia-troque_pelo_seu_nome"

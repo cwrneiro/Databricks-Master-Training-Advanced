@@ -1,0 +1,91 @@
+site_name: Engenharia de Dados e IA no Databricks
+site_description: Workshop hands-on de 1 dia, do evento de autorização ao app, com bundle, pipeline, Lakebase, agente e app
+
+repo_url: https://github.com/cwrneiro/Databricks-Master-Training-Advanced
+edit_uri: edit/main/
+
+# O repositório inteiro é a fonte da documentação (READMEs ficam intocados).
+# Por isso o site precisa ser construído FORA da árvore do repo (o MkDocs
+# recusa um site_dir dentro do docs_dir). `mkdocs serve` ignora isso e usa
+# um diretório temporário; `mkdocs build` escreve em ../site.
+docs_dir: .
+site_dir: ../site
+
+# Fora do site: material interno do desenvolvimento, o node_modules do app e
+# os arquivos do template do agente (são para o agentbricks, não para o aluno).
+# O resto (.py, .yml, .sql) fica: são os arquivos companheiros dos READMEs.
+exclude_docs: |
+  requirements-docs.txt
+  mkdocs.yml
+  CLAUDE.md
+  CONTEXT.md
+  /docs/
+  node_modules/
+  dist/
+  __pycache__/
+  /01 - Pipeline e bundle/src/app/*.md
+  /03 - Agente/agente/*.md
+
+theme:
+  name: material
+  language: pt-BR
+  logo: assets/databricks-lockup-white.svg
+  favicon: assets/databricks-symbol.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - content.code.copy
+
+# Paleta de cores Databricks (lava red) aplicada via CSS.
+extra_css:
+  - assets/extra.css
+
+# same-dir permite mkdocs.yml na raiz junto dos READMEs (MkDocs recusa
+# docs_dir: . sem ele). `search` precisa ser listado ao definir plugins.
+plugins:
+  - search:
+      lang: pt
+  - same-dir
+
+markdown_extensions:
+  - tables
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  # Blocos ```mermaid viram diagramas (o GitHub renderiza os mesmos blocos).
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+# Páginas fora do menu lateral. "00 - Preparação" é do líder: fica acessível pela
+# home e pela abertura. As perguntas do agente são de apoio dos módulos 3 e 4.
+not_in_nav: |
+  00 - Preparação/README.md
+  bundle/docs/perguntas.md
+
+nav:
+  - Início: README.md
+  - 00 - Abertura: "00 - Abertura/README.md"
+  - 01 - Pipeline e bundle: "01 - Pipeline e bundle/README.md"
+  - 02 - Lakebase: "02 - Lakebase/README.md"
+  - 03 - Agente: "03 - Agente/README.md"
+  - 04 - App: "04 - App/README.md"
+  - 05 - Fechamento: "05 - Fechamento/README.md"

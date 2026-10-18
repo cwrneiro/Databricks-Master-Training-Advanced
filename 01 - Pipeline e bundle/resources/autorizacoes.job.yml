@@ -1,0 +1,25 @@
+resources:
+  jobs:
+    autorizacoes_job:
+      name: autorizacoes_${var.aluno}
+      # Um run por vez: um run novo nunca disputa as tabelas com o anterior.
+      max_concurrent_runs: 1
+      # Run disparado com outro em andamento entra na fila em vez de ser descartado.
+      queue:
+        enabled: true
+      # A cada 10 min, 2 min depois de cada lote do gerador. Em dev, o mode: development pausa o schedule.
+      schedule:
+        quartz_cron_expression: 0 2/10 * * * ?
+        timezone_id: America/Sao_Paulo
+      tasks:
+        - task_key: pipeline
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.autorizacoes.id}
+        - task_key: validar
+          depends_on:
+            - task_key: pipeline
+          notebook_task:
+            notebook_path: ../src/validar.py
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${resources.schemas.aluno.name}

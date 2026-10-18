@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T13:00:00-03:00",
+  "title": "Design System: Vida+ Saúde · Central de autorizações",
+  "extensions": {
+    "colorMeta": {
+      "mesa": {
+        "role": "neutral",
+        "displayName": "Mesa Azul-Acinzentada",
+        "canonical": "var(--mesa)",
+        "tonalRamp": [
+          "#434548",
+          "#707378",
+          "#9ca1a9",
+          "#bec4cd",
+          "#e7ecf4",
+          "#eff2f8",
+          "#f7f9fc",
+          "#fcfcfe"
+        ]
+      },
+      "papel": {
+        "role": "neutral",
+        "displayName": "Papel",
+        "canonical": "var(--papel)",
+        "tonalRamp": [
+          "#4c4c4c",
+          "#808080",
+          "#b2b2b2",
+          "#d9d9d9",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff"
+        ]
+      },
+      "tinta": {
+        "role": "primary",
+        "displayName": "Tinta Azul-Formulário",
+        "canonical": "var(--tinta)",
+        "tonalRamp": [
+          "#080d16",
+          "#0e1626",
+          "#131e34",
+          "#172540",
+          "#546078",
+          "#8d95a5",
+          "#c6cad2",
+          "#e8eaed"
+        ]
+      },
+      "tinta-2": {
+        "role": "neutral",
+        "displayName": "Tinta Secundária",
+        "canonical": "var(--tinta-2)",
+        "tonalRamp": [
+          "#141a25",
+          "#222b3d",
+          "#303c55",
+          "#3a4968",
+          "#73809b",
+          "#a2aabc",
+          "#d0d5de",
+          "#eceef2"
+        ]
+      },
+      "azul": {
+        "role": "primary",
+        "displayName": "Azul de Rótulo",
+        "canonical": "var(--azul)",
+        "tonalRamp": [
+          "#0e1c32",
+          "#182e54",
+          "#214176",
+          "#284f8f",
+          "#6386be",
+          "#97aed4",
+          "#cbd6e9",
+          "#eaeff6"
+        ]
+      },
+      "violeta": {
+        "role": "secondary",
+        "displayName": "Violeta de Carimbo",
+        "canonical": "var(--violeta)",
+        "tonalRamp": [
+          "#1b112a",
+          "#2e1d46",
+          "#402962",
+          "#4d3177",
+          "#846ba9",
+          "#ad9cc6",
+          "#d6cee2",
+          "#efebf4"
+        ]
+      },
+      "vermelho": {
+        "role": "secondary",
+        "displayName": "Vermelho de Carimbo",
+        "canonical": "var(--vermelho)",
+        "tonalRamp": [
+          "#3a110d",
+          "#601c16",
+          "#86281e",
+          "#a33025",
+          "#d06a60",
+          "#e09c95",
+          "#efceca",
+          "#f9ebea"
+        ]
+      },
+      "regua": {
+        "role": "neutral",
+        "displayName": "Régua",
+        "canonical": "var(--regua)",
+        "tonalRamp": [
+          "#30353d",
+          "#505866",
+          "#6f7b8f",
+          "#8796ad",
+          "#b7c4d9",
+          "#cfd8e6",
+          "#e7ebf2",
+          "#f5f7fa"
+        ]
+      },
+      "tom": {
+        "role": "neutral",
+        "displayName": "Tom de Formulário",
+        "canonical": "var(--tom)",
+        "tonalRamp": [
+          "#47494b",
+          "#77797c",
+          "#a7a9ae",
+          "#caced4",
+          "#f2f5fa",
+          "#f6f8fc",
+          "#fbfcfe",
+          "#fdfefe"
+        ]
+      },
+      "faixa-texto-suave": {
+        "role": "neutral",
+        "displayName": "Texto Suave da Faixa"
+      },
+      "faixa-fio": {
+        "role": "neutral",
+        "displayName": "Fio da Faixa"
+      },
+      "marca-mais": {
+        "role": "neutral",
+        "displayName": "Mais da Marca"
+      },
+      "selecao": {
+        "role": "neutral",
+        "displayName": "Seleção"
+      },
+      "placeholder": {
+        "role": "neutral",
+        "displayName": "Placeholder"
+      }
+    },
+    "typographyMeta": {
+      "marca": {
+        "displayName": "Marca",
+        "purpose": "Só o nome Vida+ Saúde no cabeçalho."
+      },
+      "carimbo": {
+        "displayName": "Carimbo",
+        "purpose": "Carimbo de situação da guia aberta; 18 px abaixo de 600 px."
+      },
+      "contagem": {
+        "displayName": "Contagem",
+        "purpose": "Números do quadro de situações, na tinta da situação."
+      },
+      "titulo-guia": {
+        "displayName": "Título da Guia",
+        "purpose": "Título impresso da guia, em maiúsculas."
+      },
+      "valor-campo": {
+        "displayName": "Valor de Campo",
+        "purpose": "Conteúdo dos campos numerados."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido, observações (até 70ch) e entradas; números tabulares."
+      },
+      "rotulo": {
+        "displayName": "Rótulo",
+        "purpose": "Rótulos de campo e entrada, em maiúsculas e azul."
+      },
+      "faixa": {
+        "displayName": "Faixa",
+        "purpose": "Faixas de título e de seção, branco sobre tinta."
+      },
+      "etiqueta": {
+        "displayName": "Etiqueta",
+        "purpose": "Etiqueta de situação na lista do fichário."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Só IDs, datas, horas e cronômetro."
+      }
+    },
+    "shadows": [
+      {
+        "name": "fio-selecao-quadro",
+        "value": "inset 0 -3px 0 var(--st)",
+        "purpose": "Sublinhado interno da caixa de situação pressionada no quadro."
+      },
+      {
+        "name": "fio-selecao-ficha",
+        "value": "inset 0 0 0 1px var(--tinta)",
+        "purpose": "Contorno interno da ficha selecionada."
+      },
+      {
+        "name": "fio-duplo-agente",
+        "value": "inset 0 0 0 1px var(--azul)",
+        "purpose": "Dobra o fio azul da mensagem do agente."
+      }
+    ],
+    "motion": [
+      {
+        "name": "carimbar",
+        "value": "180ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "O carimbo bate ao abrir uma guia ou mudar de situação (de -2° e escala 1.35 para -6° e escala 1)."
+      },
+      {
+        "name": "piscar",
+        "value": "1.2s infinite, atrasos de 0.2s",
+        "purpose": "Três quadrados violeta na espera do agente."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation: none",
+        "purpose": "Carimbo e pontos ficam estáticos com prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "empilhado",
+        "value": "1100px"
+      },
+      {
+        "name": "estreito",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal de um formulário (salvar observação, enviar pergunta).",
+      "html": "<button class=\"ds-botao\">Salvar observação</button>",
+      "css": ".ds-botao{font:700 14px/1.4 \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-variant:small-caps;letter-spacing:.05em;text-transform:lowercase;color:#fff;background:var(--tinta,#1b2b4b);border:1px solid var(--tinta,#1b2b4b);border-radius:0;padding:7px 14px;cursor:pointer}.ds-botao:hover{background:var(--azul,#2f5da8);border-color:var(--azul,#2f5da8)}.ds-botao:focus-visible{outline:2px solid var(--azul,#2f5da8);outline-offset:1px}.ds-botao:disabled{opacity:.45;cursor:not-allowed}"
+    },
+    {
+      "name": "Botão claro",
+      "kind": "button",
+      "refersTo": "button-claro",
+      "description": "Ação secundária ao lado da principal.",
+      "html": "<button class=\"ds-botao-claro\">Perguntar ao agente</button>",
+      "css": ".ds-botao-claro{font:700 14px/1.4 \"Helvetica Neue\", Helvetica, Arial, sans-serif;font-variant:small-caps;letter-spacing:.05em;text-transform:lowercase;color:var(--tinta,#1b2b4b);background:var(--papel,#fff);border:1px solid var(--tinta,#1b2b4b);border-radius:0;padding:7px 14px;cursor:pointer}.ds-botao-claro:hover{background:var(--tom,#eef2f9)}.ds-botao-claro:focus-visible{outline:2px solid var(--azul,#2f5da8);outline-offset:1px}"
+    },
+    {
+      "name": "Faixa de título com botão",
+      "kind": "custom",
+      "refersTo": "faixa-titulo",
+      "description": "Primeira linha de toda folha; pode levar um botão de faixa.",
+      "html": "<div class=\"ds-faixa\"><span>Agente Vida+</span><button class=\"ds-botao-faixa\">Nova conversa</button></div>",
+      "css": ".ds-faixa{display:flex;align-items:center;justify-content:space-between;padding:6px 6px 6px 10px;background:var(--tinta,#1b2b4b);color:#fff;font:700 11px/1.4 \"Helvetica Neue\", Helvetica, Arial, sans-serif;letter-spacing:.1em;text-transform:uppercase}.ds-botao-faixa{font:700 11px/1.4 \"Helvetica Neue\", Helvetica, Arial, sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:transparent;border:1px solid #5d7099;border-radius:0;padding:2px 8px;cursor:pointer}.ds-botao-faixa:hover{border-color:#fff}.ds-botao-faixa:focus-visible{outline:2px solid var(--azul,#2f5da8);outline-offset:1px}"
+    },
+    {
+      "name": "Entrada de busca",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Entrada com rótulo visível, fundo tom e fio de tinta.",
+      "html": "<label class=\"ds-busca\"><span class=\"ds-rotulo\">Buscar guia</span><input class=\"ds-input\" type=\"search\" placeholder=\"AUT-00137, BEN-0532 ou PRE-014\"></label>",
+      "css": ".ds-busca{display:flex;align-items:center;gap:12px;padding:8px 16px;background:#fff;border-bottom:2px solid var(--tinta,#1b2b4b)}.ds-rotulo{font:700 11px/1.4 \"Helvetica Neue\", Helvetica, Arial, sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--azul,#2f5da8);white-space:nowrap}.ds-input{flex:1;min-width:0;font:14px/1.4 \"Helvetica Neue\", Helvetica, Arial, sans-serif;color:var(--tinta,#1b2b4b);background:var(--tom,#eef2f9);border:1px solid var(--tinta,#1b2b4b);border-radius:0;padding:7px 10px}.ds-input::placeholder{color:#5f6f8f}.ds-input:focus-visible{outline:2px solid var(--azul,#2f5da8);outline-offset:1px}"
+    },
+    {
+      "name": "Campos numerados",
+      "kind": "custom",
+      "refersTo": "campo",
+      "description": "Grade de 6 colunas da guia, com faixa de seção.",
+      "html": "<div class=\"ds-campos\"><div class=\"ds-campo\"><span class=\"ds-r\">1 - Número da guia</span><span class=\"ds-v ds-mono\">AUT-00864</span></div><div class=\"ds-campo\"><span class=\"ds-r\">2 - Último evento</span><span class=\"ds-v ds-mono\">08/12/2025, 15:18</span></div><div class=\"ds-campo\"><span class=\"ds-r\">3 - Situação</span><span class=\"ds-v\">Solicitada</span></div><div class=\"ds-secao\">Procedimento solicitado</div><div class=\"ds-campo ds-inteiro\"><span class=\"ds-r\">6 - Procedimento</span><span class=\"ds-v\">Ressonância magnética</span></div></div>",
+      "css": ".ds-campos{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid #1b2b4b;border-left:1px solid #1b2b4b;background:#fff;color:#1b2b4b;font:14px/1.4 \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-campo{grid-column:span 2;min-height:46px;padding:3px 6px 5px;border-right:1px solid #1b2b4b;border-bottom:1px solid #1b2b4b}.ds-inteiro{grid-column:span 6}.ds-r{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2f5da8}.ds-v{display:block;font-size:15px;font-weight:600}.ds-mono{font-family:\"SF Mono\",Menlo,Consolas,\"Courier New\",monospace;font-size:.95em}.ds-secao{grid-column:span 6;padding:2px 6px;background:#1b2b4b;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}"
+    },
+    {
+      "name": "Carimbo de situação",
+      "kind": "custom",
+      "refersTo": "carimbo",
+      "description": "Situação da guia aberta, em tinta de carimbo; bate em 180 ms.",
+      "html": "<div class=\"ds-carimbos\"><span class=\"ds-carimbo\" style=\"--st:#1b2b4b\">Solicitada</span><span class=\"ds-carimbo\" style=\"--st:#5b3a8c\">Em análise</span><span class=\"ds-carimbo\" style=\"--st:#2f5da8\">Aprovada</span><span class=\"ds-carimbo\" style=\"--st:#c0392b\">Negada</span></div>",
+      "css": ".ds-carimbos{display:flex;gap:24px;flex-wrap:wrap;padding:16px;background:#fff}.ds-carimbo{color:var(--st);border:3px double var(--st);font:900 22px/1.4 \"Helvetica Neue\", Helvetica, Arial, sans-serif;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding:2px 12px;transform:rotate(-6deg);opacity:.92;animation:ds-carimbar 180ms cubic-bezier(.16,1,.3,1)}@keyframes ds-carimbar{from{transform:rotate(-2deg) scale(1.35);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:.92}}@media (prefers-reduced-motion:reduce){.ds-carimbo{animation:none}}"
+    },
+    {
+      "name": "Ficha com etiqueta",
+      "kind": "card",
+      "refersTo": "etiqueta",
+      "description": "Linha do fichário: ID, etiqueta de situação, hora e metadados.",
+      "html": "<button class=\"ds-ficha\"><span class=\"ds-id\">AUT-00716</span><span class=\"ds-etq\" style=\"--st:#5b3a8c\">Em análise</span><span class=\"ds-hora\">08/12, 15:30</span><span class=\"ds-meta\">Internação · PRE-098 · BEN-0145</span></button>",
+      "css": ".ds-ficha{width:100%;font:14px/1.4 \"Helvetica Neue\", Helvetica, Arial, sans-serif;color:#1b2b4b;text-align:left;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:1px 8px;align-items:baseline;padding:6px 10px;background:#fff;border:0;border-bottom:1px solid #9fb0cc}.ds-ficha:hover{background:#eef2f9}.ds-ficha:focus-visible{outline:2px solid #2f5da8;outline-offset:1px;background:#eef2f9;box-shadow:inset 0 0 0 1px #1b2b4b}.ds-id,.ds-hora{font-family:\"SF Mono\",Menlo,Consolas,monospace}.ds-id{font-weight:700}.ds-hora{font-size:11px;color:#44567a}.ds-meta{grid-column:1/-1;font-size:12px;color:#44567a}.ds-etq{justify-self:start;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--st);border:1.5px solid var(--st);padding:0 5px;transform:rotate(-2deg)}"
+    },
+    {
+      "name": "Mensagens do agente",
+      "kind": "custom",
+      "description": "Mensagem do atendente, resposta do agente com fonte e estado de espera.",
+      "html": "<div class=\"ds-conv\"><div class=\"ds-msg ds-at\"><span class=\"ds-r\">Atendente</span>Quantas endoscopias foram negadas?</div><div class=\"ds-msg ds-ag\"><span class=\"ds-r\">Agente <span class=\"ds-fonte\">Tabelas (Genie)</span></span>Apenas 1 autorização de endoscopia foi negada.</div><div class=\"ds-msg ds-espera\"><span class=\"ds-r\">Agente</span><span class=\"ds-pontos\"><i></i><i></i><i></i></span>Consultando… 12 s</div></div>",
+      "css": ".ds-conv{display:flex;flex-direction:column;gap:8px;padding:10px;background:#fff;color:#1b2b4b;font:13px/1.45 \"Helvetica Neue\", Helvetica, Arial, sans-serif}.ds-msg{max-width:92%;padding:5px 8px;border:1px solid #1b2b4b}.ds-at{align-self:flex-end;background:#eef2f9}.ds-ag{align-self:flex-start;border-color:#2f5da8;box-shadow:inset 0 0 0 1px #2f5da8}.ds-espera{align-self:flex-start;border:1px dashed #1b2b4b;color:#44567a}.ds-r{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2f5da8}.ds-fonte{margin-left:6px;padding:0 4px;border:1px solid #2f5da8;font-size:10px;text-transform:none;letter-spacing:.02em}.ds-pontos i{display:inline-block;width:6px;height:6px;margin-right:3px;background:#5b3a8c;animation:ds-piscar 1.2s infinite}.ds-pontos i:nth-child(2){animation-delay:.2s}.ds-pontos i:nth-child(3){animation-delay:.4s}@keyframes ds-piscar{0%,80%,100%{opacity:.2}40%{opacity:1}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Guia TISS",
+    "overview": "Cada autorização é uma guia de papel, e a tela é o formulário que o atendente já conhece. Folhas brancas ficam sobre uma mesa azul-acinzentada; tudo o que é estrutura (bordas, faixas de seção, cabeçalho) é desenhado em uma única tinta azul-formulário, com fio de 1 px e raio zero. Os campos são caixas numeradas (\"1 - Número da guia\"), com o rótulo pequeno em azul e o valor logo abaixo, como na guia impressa.\n\nA situação da guia não é um badge: é tinta de carimbo. Cada situação tem uma tinta (solicitada, em análise, aprovada, negada), e a mesma tinta aparece na etiqueta da lista, na contagem do quadro e no carimbo grande da guia aberta. O carimbo tem borda dupla, leve rotação e \"bate\" ao abrir uma guia ou quando a situação muda.\n\nA densidade é de ferramenta: corpo de 14 px, entrelinha compacta, números tabulares, três colunas lado a lado no desktop. Nada de cartão arredondado, sombra projetada, gradiente decorativo ou contador de painel SaaS.",
+    "keyCharacteristics": [
+      "Papel branco sobre mesa azul-acinzentada, uma tinta só para a estrutura.",
+      "Raio zero e fio de 1 px em todo lugar; profundidade por fio e tom, nunca por sombra projetada.",
+      "Campos numerados em caixas, com rótulo em maiúsculas pequenas e tracking.",
+      "Situação codificada por tinta, repetida em etiqueta, contagem e carimbo.",
+      "Helvetica/Arial como nos formulários da ANS; mono só para IDs e datas."
+    ],
+    "rules": [
+      {
+        "name": "The Uma Tinta por Situação Rule",
+        "body": "Cada situação tem exatamente uma tinta (solicitada = tinta, em análise = violeta, aprovada = azul, negada = vermelho), aplicada por uma variável de situação; a mesma tinta vai na etiqueta, na contagem e no carimbo. Não introduza verde, amarelo ou outra cor para status.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tinta Estrutural Rule",
+        "body": "Toda estrutura (bordas de folha e campo, faixas, cabeçalho) usa a tinta azul-formulário. Violeta e vermelho nunca viram cor de estrutura ou de decoração.",
+        "section": "colors"
+      },
+      {
+        "name": "The Rótulo Pequeno Rule",
+        "body": "Rótulos de formulário são maiúsculas reais de 11 px com tracking de 0.08em a 0.1em, em peso 700. Eles nomeiam campos, entradas e seções; não servem de chamada decorativa acima de títulos.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono É Identificador Rule",
+        "body": "A mono aparece só em IDs, datas, horas e contadores de tempo. Texto corrido, nomes de procedimento e e-mails ficam na grotesca.",
+        "section": "typography"
+      },
+      {
+        "name": "The Fio, Não Sombra Rule",
+        "body": "Estado e destaque se desenham com fio (borda ou `inset` sem desfoque), nunca com sombra projetada ou desfocada. Folhas ficam sobre a mesa por contraste tonal e borda de 1 px.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** desenhar toda estrutura com fio de 1 px de tinta e raio 0, sobre papel branco, com a mesa visível entre as folhas.",
+      "**Do** abrir toda folha com uma faixa de título de tinta e texto em maiúsculas de 11 px, 700, tracking 0.1em.",
+      "**Do** mostrar dados da guia como campos numerados (\"n - Nome\") na grade de 6 colunas, separados por faixas de seção.",
+      "**Do** aplicar a tinta de situação pela variável de situação, para que etiqueta, contagem e carimbo sempre concordem.",
+      "**Do** usar mono só para IDs, datas, horas e cronômetros.",
+      "**Do** marcar seleção e estado com fio interno sem desfoque (sublinhado de 3 px ou contorno de 1 px).",
+      "**Do** usar tracejado de régua para avisos e espera, e vermelho só para erro e para \"negada\"."
+    ],
+    "donts": [
+      "**Don't** usar cantos arredondados, cartões flutuantes ou sombra projetada ou desfocada.",
+      "**Don't** criar cores de status fora das quatro tintas de situação, nem usar violeta ou vermelho como decoração.",
+      "**Don't** trocar o status carimbado por badges arredondados, pílulas ou contadores de painel SaaS.",
+      "**Don't** usar rótulos de 11 px em maiúsculas como chamada decorativa acima de títulos; eles nomeiam campos, entradas e seções.",
+      "**Don't** usar nomes, cores ou logos de operadoras reais."
+    ]
+  }
+}

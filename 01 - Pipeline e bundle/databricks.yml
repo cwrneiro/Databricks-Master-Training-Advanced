@@ -1,0 +1,30 @@
+# Bundle do workshop: tudo o que você sobe no Databricks, declarado em código.
+# Ele cresce ao longo do dia: o módulo 1 traz o schema, o pipeline e o job.
+bundle:
+  name: vida_saude
+
+include:
+  - resources/*.yml
+
+variables:
+  aluno:
+    description: Seu nome de aluno (primeira letra do nome + sobrenome, por exemplo acarneiro). Vira o nome do seu schema.
+    default: troque_pelo_seu_nome # TODO (passo 4): troque pelo seu nome de aluno
+  catalog:
+    description: Catálogo do workshop. Não mude.
+    default: academydb
+  eventos_path:
+    description: Pasta onde o gerador escreve os lotes de eventos. Não mude.
+    default: /Volumes/academydb/shared/raw/autorizacao_eventos
+
+targets:
+  # dev: prefixa o schema com dev_<usuario>_, os jobs e pipelines com [dev <usuario>] e pausa os schedules.
+  dev:
+    mode: development
+    default: true
+
+  # prod: nomes sem prefixo e schedules ligados.
+  prod:
+    mode: production
+    workspace:
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
