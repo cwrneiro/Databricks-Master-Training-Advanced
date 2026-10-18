@@ -1,6 +1,9 @@
 site_name: Engenharia de Dados e IA no Databricks
 site_description: Workshop hands-on de 1 dia, do evento de autorização ao app, com bundle, pipeline, Lakebase, agente e app
 
+# URL pública do site (GitHub Pages, publicado pelo .github/workflows/docs.yml).
+site_url: https://cwrneiro.github.io/Databricks-Master-Training-Advanced/
+
 repo_url: https://github.com/cwrneiro/Databricks-Master-Training-Advanced
 edit_uri: edit/main/
 
