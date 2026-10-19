@@ -102,6 +102,7 @@ Abra `03 - Agente/03_agente.py`, conecte no **serverless**, preencha o widget `a
 
 ## Passo 3: Genie space
 No menu lateral, **Genie Agents → New**:
+
 1. Em **Connect your data**, escolha `academydb` → `<aluno>` → `silver_autorizacao_status` e `gold_kpi_autorizacoes`, e clique em **Create**.
 2. **Configure → Instructions**: em **General Instructions**, cole o texto abaixo e clique em **Save**.
 3. Pergunte "Quantas autorizações de ressonância magnética estão em análise?" para conferir. A resposta mostra o SQL que a Genie escreveu, com `procedimento = 'ressonancia_magnetica'`.
@@ -161,6 +162,7 @@ O agente fica **fora do bundle**: o `agentbricks deploy` cria peças (as lojas e
 Se você abrir o app agora, a primeira pergunta falha com `agent invocation failed`: o service principal (SP) do app ainda não tem permissão no seu model service nem no seu índice. Rode a **seção 3** do notebook para ver o application ID do SP.
 
 Conceda o acesso pelo bundle:
+
 1. Em `databricks.yml`, crie a variável `agent_sp` com o application ID do SP como `default`.
 2. No schema (`resources/aluno.schema.yml`), dê ao SP `USE_SCHEMA` e `SELECT`. O `SELECT` no schema cobre o índice, que mora nele.
 3. No model service (`resources/llm.model_service.yml`), dê ao SP `EXECUTE`.
@@ -209,6 +211,7 @@ Abra a URL do app (a seção 3 mostra). A UI de chat já vem com o projeto: cada
 > Deixe o **Agent model** no padrão (`academydb.<aluno>.llm (project default)`). Os outros modelos da lista são do `system.ai`, onde o SP do app não tem grant seu.
 
 Faça as perguntas de `bundle/docs/perguntas.md`:
+
 - **RAG** (documentos): resposta exata, por exemplo "21 dias úteis" para a ressonância (~15 s).
 - **Genie** (tabelas): os números dependem de quantos lotes já chegaram, e o `perguntas.md` traz as faixas esperadas. Cada pergunta à Genie leva de ~30 s a alguns minutos.
 

@@ -41,6 +41,7 @@ resources:
 ```
 
 O que cada parte faz:
+
 - `source_table_full_name`: a origem, a sua silver. O sync incremental lê o *Change Data Feed* dela, que o `delta.enableChangeDataFeed` do módulo 1 ligou.
 - `primary_key_columns`: a chave da tabela no Postgres. A silver tem uma linha por `autorizacao_id` desde o `AUTO CDC`.
 - `create_database_objects_if_missing`: cria o schema Postgres `<aluno>` no primeiro sync.
@@ -84,6 +85,7 @@ No **Catalog**, a synced table aparece em `academydb` → `<aluno>` → `autoriz
 
 ## Passo 5: Ver os dados no Postgres
 Abra `02 - Lakebase/02_lakebase.py`, conecte no **serverless**, preencha o widget `aluno` com o seu nome de aluno e clique em **Run all**. O notebook:
+
 1. conecta no Postgres com o seu usuário (o token OAuth faz o papel da senha);
 2. compara a `autorizacao_status` do Postgres com a silver;
 3. faz a consulta por chave que o app vai fazer;

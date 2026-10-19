@@ -27,6 +27,7 @@ flowchart LR
 ```
 
 O que o atendente precisa é do **status atual**: o último evento de cada guia. Parece simples, mas os eventos chegam como num sistema real:
+
 - **um lote a cada 10 min**, o dia inteiro (42 lotes, ~5.400 eventos, ~2.000 guias). As respostas mudam ao longo do dia;
 - **com duplicatas**: o mesmo evento chega duas vezes;
 - **fora de ordem**: um evento atrasado chega depois de outro mais novo da mesma guia;
@@ -49,6 +50,7 @@ Tudo, menos o agente e o Genie space, fica declarado num **bundle**: um `databri
 
 ## Passo 1: O líder liga o gerador
 O instrutor (ou o líder, o admin do workspace) abre o job `edia_gerador_eventos` e:
+
 1. clica em **Run now**: o lote 1 chega na hora;
 2. clica em **Resume** no schedule: um lote a cada 10 min. Depois do 42º, o job se pausa sozinho.
 

@@ -49,6 +49,7 @@ Em `databricks.yml`, troque `troque_pelo_seu_nome` pelo seu nome de aluno: prime
 
 ## Passo 5: Deploy em `dev`
 No painel **Deployments**, deixe o target `dev` selecionado e clique em **Deploy**. O diálogo lista o que vai ser criado:
+
 - o schema `dev_<usuario>_<aluno>`;
 - o pipeline e o job, com o prefixo `[dev <usuario>]`.
 
@@ -99,6 +100,7 @@ O `AUTO CDC` faz o MERGE de cada lote por você: deduplica, aplica os eventos na
 Salve o arquivo. **Não precisa de novo deploy**: em `dev`, o pipeline e o job leem o código direto da sua Git folder. Novo deploy em `dev` só quando você muda um YAML.
 
 A silver ainda guarda as linhas do run anterior, e trocar o tipo de flow (de append para `AUTO CDC`) exige recalcular a tabela do zero. Por isso:
+
 1. Abra o pipeline, clique na seta ao lado de **Run pipeline** → **Run pipeline with full table refresh** → **Start full refresh**. Leva ~1 min.
 2. Volte ao bundle e clique em **Run job**. A task `validar` fica verde:
 

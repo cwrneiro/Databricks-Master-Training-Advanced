@@ -130,6 +130,6 @@ print(f"5. {100 * aprovadas / len(auths):.1f}% ({aprovadas}/{len(auths)})")
 
 ### Integração
 - O agente do módulo 3 combina ambas as estratégias:
-  - Consultas RAG para questões sobre políticas/regras (contexto fixo dos PDFs)
-  - Consultas Genie para questões sobre operação/status do sistema (contexto dinâmico)
-  - MCP gerenciado fornece Vector Search (RAG) e Genie (Databricks)
+    - Consultas RAG para questões sobre políticas/regras (contexto fixo dos PDFs)
+    - Consultas Genie para questões sobre operação/status do sistema (contexto dinâmico)
+    - MCP gerenciado fornece Vector Search (RAG) e Genie (Databricks)

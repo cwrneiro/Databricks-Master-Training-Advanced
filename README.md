@@ -5,6 +5,7 @@ Workshop hands-on de 1 dia (~7h30), com instrutor, que leva um **evento de autor
 ## Objetivo
 
 Ao fim do dia, você terá construído e publicado, no seu próprio schema:
+
 - um pipeline declarativo (Lakeflow Spark Declarative Pipelines) com Auto Loader, expectations e `AUTO CDC`, orquestrado por um job, com deploy em `dev` e promoção para `prod`;
 - uma synced table no **Lakebase**, o Postgres gerenciado do Databricks, que acompanha o pipeline a cada lote;
 - um **agente** que busca nos documentos da operadora (AI Search) e consulta as suas tabelas (Genie);

@@ -42,6 +42,7 @@ Não cria schemas de aluno (o bundle de cada aluno cria o dele) nem cluster.
 ## Na abertura do workshop
 
 Abra o job `edia_gerador_eventos` e:
+
 1. **Run now**: o lote 1 chega na hora.
 2. **Resume** no schedule: um lote a cada 10 min, 42 lotes (~7 h). Depois do último, o job se pausa sozinho.
 

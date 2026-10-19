@@ -49,6 +49,7 @@ resources:
 ```
 
 O que cada parte faz:
+
 - `source_code_path`: a pasta do código, relativa a este arquivo. O Databricks instala os pacotes e compila o app quando o código sobe (passo 2).
 - `user_api_scopes`: o que o app pode fazer em nome de quem está logado. O app do agente pede `genie`, então o app do atendente precisa pedir o mesmo para repassar o token.
 - `resources.postgres`: dá ao SP do app o direito de conectar no projeto Lakebase da turma. O deploy cria um role com o application ID do SP no Postgres, mas sem acesso ao seu schema (passo 3).
@@ -77,6 +78,7 @@ O app ainda não tem permissão no schema <aluno> do Postgres. Rode os GRANTs do
 Abra `04 - App/04_app.py`, conecte no **serverless**, preencha o widget `aluno` e rode a **seção 1**: ela mostra o application ID do SP do app e confere que o role dele existe no Postgres.
 
 Na **seção 2**, complete o TODO: conceda ao SP, no seu schema do Postgres,
+
 - `USAGE` no schema;
 - `SELECT` na `autorizacao_status`;
 - `SELECT` e `INSERT` na `observacao_atendente`.
@@ -112,6 +114,7 @@ Os dados continuam chegando: a cada 10 min, o gerador escreve um lote, o job atu
 **Observar.** Na guia aberta, escreva uma observação ("Prestador ligou pedindo prioridade") e clique em **Salvar observação**. Ela aparece na hora, com o seu e-mail. Rode a **seção 3** do notebook: a mesma linha está na `observacao_atendente`. Quem gravou foi o SP do app, mas o `autor` é você: o app lê quem está logado e grava junto.
 
 **Conversar.** No painel **Agente Vida+**, faça uma pergunta de cada tipo de `bundle/docs/perguntas.md`:
+
 - "Qual o prazo de uma ressonância magnética?": a resposta vem dos documentos (marca **Documentos**), em ~15 s.
 - "Quantas tomografias estão em análise?": a resposta vem das tabelas (marca **Tabelas (Genie)**) e leva de ~40 s a alguns minutos. Enquanto isso, a guia ao lado continua usável.
 
