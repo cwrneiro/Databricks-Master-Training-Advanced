@@ -150,7 +150,7 @@ Em `dev`, o código é lido direto da Git folder, e você repete o ciclo até a 
 ### Lakebase Change Data Feed: o caminho de volta
 Hoje, os dados vão do lakehouse para o Postgres. As observações que os atendentes gravam ficam só no Postgres: nenhum dashboard nem a Genie enxergam. O **Lakebase Change Data Feed** (Public Preview, antes chamado Lakehouse Sync) faz o caminho de volta: copia cada insert, update e delete de um schema do Postgres para tabelas Delta no Unity Catalog (`lb_<tabela>_history`), a cada ~15 s.
 
-Com ele, a `observacao_atendente` vira `lb_observacao_atendente_history`, pode entrar no pipeline como mais uma bronze, e a Genie, com essa tabela no space, responderia "quais prestadores mais pedem prioridade?". Para ligar, o admin habilita o preview, as tabelas precisam de `REPLICA IDENTITY FULL`, e quem configura precisa de `CAN MANAGE` no projeto Lakebase (por isso ficou fora do hands-on).
+Com ele, a `observacao_atendente` vira `lb_observacao_atendente_history`, pode entrar no pipeline como mais uma bronze, e a Genie, com essa tabela no space, responderia "quais prestadores mais pedem prioridade?". Para ligar, o admin habilita o preview, as tabelas precisam de `REPLICA IDENTITY FULL`, e quem configura precisa de `CAN MANAGE` no projeto Lakebase.
 
 ### O que ficou só no guia
 - **CLI de bundles, `run_as` e CI/CD**: no módulo 1, seção **O mesmo pelo CLI, e num CI**.

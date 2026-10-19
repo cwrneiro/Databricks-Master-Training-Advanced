@@ -23,6 +23,8 @@ O app tem duas identidades. Para o Postgres, usa o próprio service principal (S
 ---
 
 ## Passo 1: Declarar o app no bundle
+> Apps: Resources · Bundles
+
 Na pasta `01 - Pipeline e bundle/resources/`, crie o arquivo `app.app.yml` (**Create → File**) e cole:
 
 ```yaml
@@ -60,6 +62,8 @@ Como o app recebe esses valores? Abra `src/app/app.yaml`: ele diz como iniciar o
 O nome do app é `vida-saude-<aluno>`, e não ganha prefixo em `dev`. Por isso este módulo roda só em `prod`.
 
 ## Passo 2: Deploy em `prod` e código do app
+> Apps · AppKit
+
 1. No painel **Deployments**, com o target `prod`, clique em **Deploy**. O app é criado junto com o SP dele.
 2. O deploy do bundle cria o app e guarda a configuração, mas **não** sobe o código. Em **Bundle resources → Apps**, clique em `vida-saude-<aluno>`: abre a página do app. Clique em **Deploy** (canto superior direito). O Databricks copia o código da pasta do bundle, lê o `app.yaml`, instala os pacotes, compila e inicia o app (~1 min).
 3. Quando o status ficar **Running**, abra a URL do app. No primeiro acesso, o Databricks pergunta com que identidade autorizar o app: escolha a sua.
@@ -75,6 +79,8 @@ O app ainda não tem permissão no schema <aluno> do Postgres. Rode os GRANTs do
 > Mudou alguma coisa no código do app? Em `prod`, faça **Deploy** no bundle (copia o código) e depois **Deploy** na página do app (sobe o código).
 
 ## Passo 3: TODO — dar ao app acesso ao Postgres
+> Lakebase: Postgres roles
+
 Abra `04 - App/04_app.py`, conecte no **serverless**, preencha o widget `aluno` e rode a **seção 1**: ela mostra o application ID do SP do app e confere que o role dele existe no Postgres.
 
 Na **seção 2**, complete o TODO: conceda ao SP, no seu schema do Postgres,
@@ -107,6 +113,8 @@ No Postgres, o role de um SP tem o nome do application ID dele, e o nome vai ent
 </details>
 
 ## Passo 4: Usar o app
+> Apps: User authorization · Lakebase · Agent Bricks
+
 Os dados continuam chegando: a cada 10 min, o gerador escreve um lote, o job atualiza a silver e o sync leva as mudanças para o Postgres. O app relê o Postgres a cada 30 s.
 
 **Consultar.** O fichário mostra quantas guias há em cada status. Clique num status para filtrar a lista, ou busque por uma guia (`AUT-00058`), um beneficiário (`BEN-0428`) ou um prestador (`PRE-048`). Abra uma guia: o carimbo mostra o status atual. Anote o ID de uma guia `em_analise` e volte a ela depois de um ou dois lotes: o status pode ter mudado.
@@ -129,7 +137,7 @@ Faça uma pergunta de acompanhamento ("e ressonâncias?"): o agente lembra da co
 A regra prática: o que o app faz por todo mundo vai pelo SP; o que depende de quem pergunta vai pelo token do usuário.
 
 ## Por que o chat não espera a resposta
-Uma pergunta à Genie pode levar minutos, e a conexão entre o navegador e o app cai depois de 2 min. Por isso o app manda a pergunta ao agente com `"background": true` (contrato no README do módulo 3): o agente responde na hora com um ID, e a tela consulta o andamento a cada poucos segundos até a resposta ficar pronta.
+Uma pergunta à Genie pode levar minutos, e a conexão entre o navegador e o app cai depois de 2 min. Por isso o app manda a pergunta ao agente com `"background": true`: o agente responde na hora com um ID, e a tela consulta o andamento a cada poucos segundos até a resposta ficar pronta.
 
 ## Se algo der errado
 

@@ -49,17 +49,21 @@ A arquitetura completa está no [Início](../README.md#arquitetura). Módulo a m
 Tudo, menos o agente e o Genie space, fica declarado num **bundle**: um `databricks.yml` que começa com 3 recursos no módulo 1 e cresce até o módulo 4.
 
 ## Passo 1: O líder liga o gerador
+> Jobs
+
 O instrutor (ou o líder, o admin do workspace) abre o job `edia_gerador_eventos` e:
 
 1. clica em **Run now**: o lote 1 chega na hora;
 2. clica em **Resume** no schedule: um lote a cada 10 min. Depois do 42º, o job se pausa sozinho.
 
-Se o dia encurtar, os últimos lotes não chegam, sem quebrar nada: nenhum passo do workshop depende de todos os lotes terem chegado. Detalhes em [00 - Preparação](../00%20-%20Prepara%C3%A7%C3%A3o/README.md#na-abertura-do-workshop).
-
 ## Passo 2: Ver o primeiro lote
+> Unity Catalog: Volumes
+
 No menu lateral, **Catalog** → `academydb` → `shared` → **Volumes** → `raw` → `autorizacao_eventos`. O arquivo `lote_001.json` tem um evento por linha. Abra e procure uma duplicata ou um status estranho.
 
 ## Passo 3: Escolher o seu nome de aluno
+> Unity Catalog: Schemas
+
 Primeira letra do nome + sobrenome, sem acento e em minúsculas (ex.: Augusto Carneiro → `acarneiro`). Ele vira o nome do seu schema (`academydb.acarneiro`) e aparece no nome de tudo o que você cria. Se alguém da turma já tiver o mesmo, acrescente um número (`acarneiro2`).
 
 ---

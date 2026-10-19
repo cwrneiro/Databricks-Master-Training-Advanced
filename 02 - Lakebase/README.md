@@ -19,6 +19,8 @@ O projeto Lakebase `edia-workshop` já existe: o instrutor criou um para a turma
 ---
 
 ## Passo 1: Declarar a synced table no bundle
+> Lakebase: Synced tables · Delta: Change Data Feed · Bundles
+
 Na pasta `01 - Pipeline e bundle/resources/`, crie o arquivo `autorizacao_status.synced_table.yml` (**Create → File**) e cole:
 
 ```yaml
@@ -50,6 +52,8 @@ O que cada parte faz:
 O `databricks.yml` inclui `resources/*.yml`, então o arquivo novo já faz parte do bundle.
 
 ## Passo 2: TODO — sincronizar a cada run do job
+> Jobs: Pipeline task
+
 A synced table *Triggered* só copia as mudanças quando alguém dispara o pipeline dela. Em `resources/autorizacoes.job.yml`, adicione uma terceira task, `sync_lakebase`, que roda **depois da `validar`** e dispara esse pipeline. O ID dele está em `${resources.postgres_synced_tables.autorizacao_status.status.pipeline_id}`.
 
 Como validar: no passo 4, o job mostra três tasks, e as três ficam verdes.
@@ -72,6 +76,8 @@ Depender da `validar`, e não só do `pipeline`, faz o app nunca receber dados q
 </details>
 
 ## Passo 3: Deploy em `prod`
+> Bundles
+
 No painel **Deployments**, com o target `prod`, clique em **Deploy**. Sobem a synced table nova e a mudança no job (~20 s).
 
 > Você mudou só YAML, mas em `prod` qualquer mudança (YAML ou código) só vale depois de um deploy em `prod`.
@@ -79,11 +85,15 @@ No painel **Deployments**, com o target `prod`, clique em **Deploy**. Sobem a sy
 O deploy cria a synced table e faz a primeira carga, que leva menos de 1 min.
 
 ## Passo 4: Rodar o job
+> Jobs · Lakebase: Synced tables
+
 Na lista **Bundle resources**, clique em **Run job**. Agora são três tasks: `pipeline` → `validar` → `sync_lakebase`. O run leva ~3 min. Daqui em diante, o schedule faz isso sozinho a cada 10 min, e o Postgres acompanha os lotes que chegam.
 
 No **Catalog**, a synced table aparece em `academydb` → `<aluno>` → `autorizacao_status`, ao lado da silver.
 
 ## Passo 5: Ver os dados no Postgres
+> Lakebase · Notebooks
+
 Abra `02 - Lakebase/02_lakebase.py`, conecte no **serverless**, preencha o widget `aluno` com o seu nome de aluno e clique em **Run all**. O notebook:
 
 1. conecta no Postgres com o seu usuário (o token OAuth faz o papel da senha);
@@ -94,46 +104,18 @@ Abra `02 - Lakebase/02_lakebase.py`, conecte no **serverless**, preencha o widge
 O checkpoint no fim fica verde:
 
 ```
-✅ Postgres com 215 autorizações e observacao_atendente pronta.
+✅ Postgres com <n> autorizações e observacao_atendente pronta.
 ```
 
-Os números dependem de quantos lotes já chegaram.
-
 ---
+
+## OLAP vs OLTP
+- **OLAP** (lakehouse: Delta, SQL warehouse): lê muitas linhas de uma vez. Serve ao pipeline, à gold e à Genie.
+- **OLTP** (Postgres, no Lakebase): lê e grava poucas linhas por chave, em milissegundos, com transações. Serve ao app.
+
+A synced table liga os dois sem um ETL de volta: o lakehouse continua a fonte da verdade, e o Postgres serve o app.
 
 ## Triggered, Continuous ou Snapshot
 - **Snapshot**: copia a tabela inteira a cada sync. Serve para tabelas pequenas ou que mudam quase toda a cada carga.
 - **Triggered** (o que você usou): copia só as mudanças, quando alguém dispara. Aqui, a task do job, logo depois de cada lote.
-- **Continuous**: um pipeline sempre ligado copia as mudanças em segundos. É o que você usaria se o app precisasse do status quase em tempo real, mas ele fica ligado (e cobrando) o tempo todo. Com um lote a cada 10 min, Triggered acompanha os dados pelo mesmo resultado.
-
-## Contrato do Postgres (usado nos módulos 3 e 4)
-
-| | Valor |
-|---|---|
-| Projeto / branch / endpoint | `edia-workshop` / `production` / `primary` (`projects/edia-workshop/branches/production/endpoints/primary`) |
-| Database | `databricks_postgres` |
-| Schema | `<aluno>` em prod (`dev_<usuario>_<aluno>` em dev), criado pelo primeiro sync, com o aluno como dono |
-| Login | usuário do Databricks (e-mail ou application ID do SP) + token OAuth de 1 h (`POST /api/2.0/postgres/credentials`) como senha, `sslmode=require` |
-
-`<aluno>.autorizacao_status`: synced table, **só leitura**. O dono é o sync (`databricks_writer_*`), e o aluno tem `SELECT` com grant option.
-
-| Coluna | Tipo |
-|---|---|
-| `autorizacao_id` | `text`, chave primária |
-| `event_id`, `beneficiario_id`, `prestador_id`, `procedimento`, `status` | `text` |
-| `event_ts` | `timestamptz` (último evento aplicado) |
-
-`<aluno>.observacao_atendente`: tabela comum, criada pelo notebook deste módulo, com o aluno como dono.
-
-| Coluna | Tipo |
-|---|---|
-| `id` | `bigint` identity, chave primária |
-| `autorizacao_id` | `text not null` |
-| `texto` | `text not null` |
-| `autor` | `text not null` (e-mail de quem escreveu) |
-| `criado_em` | `timestamptz not null default now()` |
-
-Para o app do módulo 4 ler e gravar, o aluno concede ao SP do app: `USAGE` no schema, `SELECT` na `autorizacao_status` e `SELECT, INSERT` na `observacao_atendente`.
-
-## Por que não consultar a silver direto
-A silver está num formato feito para ler muitos dados de uma vez (Delta, colunar), e cada consulta passa por um SQL warehouse. Para "uma linha por chave, centenas de vezes por minuto", com escrita no meio, um Postgres responde em milissegundos (o notebook mostra o tempo) e aguenta transações. A synced table mantém os dois mundos alinhados sem você escrever um ETL de volta: o lakehouse continua a fonte da verdade, e o Postgres serve o app.
+- **Continuous**: um pipeline sempre ligado copia as mudanças em segundos. É o que você usaria se o app precisasse do status quase em tempo real, mas ele fica ligado (e cobrando) o tempo todo.

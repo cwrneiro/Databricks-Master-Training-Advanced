@@ -23,6 +23,8 @@ Os endpoints de AI Search já existem: o instrutor criou e aqueceu para a turma.
 ---
 
 ## Passo 1: Trechos dos documentos e model service
+> Declarative Pipelines · AI Functions: ai_parse_document · AI Gateway · Bundles
+
 Os dois entram no bundle de `01 - Pipeline e bundle/`.
 
 **Trechos.** Na pasta `src/pipeline/`, crie o arquivo `documentos.sql` (**Create → File**) e cole:
@@ -76,6 +78,8 @@ Por que um model service, e não o `system.ai.claude-sonnet-4-5` direto? O app d
 No painel **Deployments**, com o target `prod`, clique em **Deploy** e, em seguida, em **Run job** (~3 min). Lembre-se: em `prod`, código novo só vale depois de deploy.
 
 ## Passo 2: Índice de AI Search
+> AI Search · Bundles
+
 O índice precisa da `documentos_chunks`, que o run do passo 1 criou. Em `resources/`, crie `documentos.index.yml` e cole:
 
 ```yaml
@@ -101,6 +105,8 @@ resources:
 Abra `03 - Agente/03_agente.py`, conecte no **serverless**, preencha o widget `aluno` e rode a **seção 1**. Ela confere o índice e faz a busca que o agente vai fazer: a pergunta sobre ressonância devolve primeiro os trechos com "21 dias úteis".
 
 ## Passo 3: Genie space
+> Genie
+
 No menu lateral, **Genie Agents → New**:
 
 1. Em **Connect your data**, escolha `academydb` → `<aluno>` → `silver_autorizacao_status` e `gold_kpi_autorizacoes`, e clique em **Create**.
@@ -131,6 +137,8 @@ Responda em português.
 Sem a lista de códigos, a Genie filtra por `'%ressonância magnética%'`, não acha nada (o valor gravado é `ressonancia_magnetica`) e responde 0.
 
 ## Passo 4: Ler o agente
+> Agent Bricks · MCP
+
 O agente já vem pronto em `03 - Agente/agente/`. É um projeto do **Agent Runtime** (`agentbricks`), com LangChain. Os arquivos que importam:
 
 | Arquivo | O que tem |
@@ -142,6 +150,8 @@ O agente já vem pronto em `03 - Agente/agente/`. É um projeto do **Agent Runti
 O modelo decide sozinho qual tool chamar. O prompt de sistema só dá a regra: documentos para regras e prazos, Genie para números.
 
 ## Passo 5: Deploy do agente pelo web terminal
+> Agent Bricks · Web terminal
+
 No notebook `03_agente.py`, rode a **seção 2**: ela imprime os comandos com o caminho da sua pasta e o seu nome. Abra o web terminal (painel inferior do notebook → **Terminal**), cole os comandos e troque `<id do Genie space>` pelo ID do passo 3:
 
 ```bash
@@ -159,6 +169,8 @@ agentbricks deploy <aluno>
 O agente fica **fora do bundle**: o `agentbricks deploy` cria peças (as lojas e o Runtime Store) que o bundle ainda não sabe declarar.
 
 ## Passo 6: TODO — dar acesso ao app do agente
+> Unity Catalog: Grants · Bundles
+
 Se você abrir o app agora, a primeira pergunta falha com `agent invocation failed`: o service principal (SP) do app ainda não tem permissão no seu model service nem no seu índice. Rode a **seção 3** do notebook para ver o application ID do SP.
 
 Conceda o acesso pelo bundle:
@@ -206,6 +218,8 @@ O `USE CATALOG` no `academydb` o SP já tem: a preparação deu a todos os usuá
 </details>
 
 ## Passo 7: Conversar com o agente
+> Apps · MLflow Tracing
+
 Abra a URL do app (a seção 3 mostra). A UI de chat já vem com o projeto: cada conversa é uma sessão (**New session** abre outra), e o histórico fica na loja de sessões. Os botões **Documentos (RAG)**, **Tabelas (Genie)** e **Memória** preenchem uma pergunta de exemplo; clique em **Send message** para enviar. No chat aparecem as chamadas de tool e o que voltou delas.
 
 > Deixe o **Agent model** no padrão (`academydb.<aluno>.llm (project default)`). Os outros modelos da lista são do `system.ai`, onde o SP do app não tem grant seu.
@@ -231,44 +245,3 @@ Perguntar à Genie sobre o prazo de uma ressonância, ou ao RAG quantas estão e
 
 ## 🎯 Desafio: memória entre sessões
 Numa conversa, diga ao agente algo sobre você ("eu atendo os prestadores de cardiologia, lembre disso"). Abra uma **nova** conversa e pergunte "quais prestadores eu atendo?". O que mudou de uma resposta para a outra? Nos traces, procure as chamadas de `remember` e `recall`.
-
-## Contrato de `/api/invocations` (usado no módulo 4)
-O app do módulo 4 conversa com o agente pelo mesmo endpoint que a UI de chat usa.
-
-`POST https://agent-bricks-<aluno>-<workspace id>.<cloud>.databricksapps.com/api/invocations`, com um token OAuth do Databricks no `Authorization: Bearer`.
-
-```json
-{
-  "id": "<uuid novo a cada pergunta>",
-  "session_id": "<uuid estável da conversa>",
-  "input": {
-    "actor": "<e-mail do atendente>",
-    "messages": [{"role": "user", "content": "Qual o prazo de uma ressonância?"}]
-  }
-}
-```
-
-Resposta (sem `stream`):
-
-```json
-{
-  "id": "<o mesmo id>",
-  "status": "completed",
-  "output": {
-    "status": "completed",
-    "output": [
-      {"type": "ai", "content": "", "tool_calls": [{"name": "academydb__<aluno>__documentos_idx", "args": {"query": "..."}}]},
-      {"type": "tool", "name": "academydb__<aluno>__documentos_idx", "content": [{"type": "text", "text": "[{\"chunk_id\": ...}]"}]},
-      {"type": "ai", "content": "O prazo máximo é de **21 dias úteis**..."}
-    ]
-  }
-}
-```
-
-- `id`: identifica a invocação e serve de chave de idempotência. Repetir o mesmo `id` devolve o resultado gravado; mudar o corpo com o mesmo `id` dá `409`.
-- `session_id`: o mesmo em todas as perguntas da conversa, para o agente lembrar do contexto.
-- `input.actor`: dono da memória de longo prazo. Sem ele, o actor vira o `session_id`, e o que o agente guardou não aparece em outra sessão. `input` também aceita só a lista de mensagens, sem `actor`.
-- A resposta final é o `content` da última mensagem de `output.output` (`type: "ai"`). As mensagens `tool` trazem o que cada tool devolveu.
-- `"stream": true`: a resposta vem como SSE, com eventos `delta` (pedaços do texto) e `message` (mensagens completas).
-- `"background": true`: devolve `202` com `status_url`. Útil para as perguntas à Genie, que levam minutos.
-- A Genie roda como quem chama (`auth = "user"`). O app do módulo 4 chama o agente com o token de quem está logado, então a Genie roda como o atendente, com as permissões dele.
