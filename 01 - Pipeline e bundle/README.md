@@ -29,25 +29,30 @@ O gerador do instrutor escreve um lote de eventos a cada 10 min em `/Volumes/aca
 
 ---
 
-## Passo 1: Clonar o repo como Git folder
+## Passo 1: Ver o primeiro lote
+> Unity Catalog: Volumes
+
+No menu lateral, **Catalog** → `academydb` → `shared` → **Volumes** → `raw` → `autorizacao_eventos`. O arquivo `lote_001.json` tem um evento por linha. Abra e procure uma duplicata ou um status estranho.
+
+## Passo 2: Clonar o repo como Git folder
 > Git folders
 
 No menu lateral, clique em **Workspace** → **Create** → **Git folder** e cole a URL do repo que o instrutor passar (a versão pública é `https://github.com/cwrneiro/Databricks-Master-Training-Advanced`).
 
-## Passo 2: Abrir o bundle
+## Passo 3: Abrir o bundle
 > Bundles
 
 Na Git folder, abra a pasta `01 - Pipeline e bundle` e clique em `databricks.yml`. O workspace reconhece que a pasta é um bundle e mostra o painel de bundles (**Deployments**) ao lado do editor.
 
-## Passo 3: Explorar a estrutura
+## Passo 4: Explorar a estrutura
 > Bundles · Declarative Pipelines · Structured Streaming
 
 Abra os arquivos da árvore acima. Em cada bloco do pipeline há um comentário `# --- Equivalente em Structured Streaming ---`: é o código que você escreveria "na mão" para fazer o mesmo. Ele não roda; serve para mostrar o que o pipeline faz por você.
 
-## Passo 4: Preencher o seu nome de aluno
+## Passo 5: Preencher o seu nome de aluno
 > Bundles: Variables
 
-Em `databricks.yml`, troque `troque_pelo_seu_nome` pelo seu nome de aluno: primeira letra do nome + sobrenome, sem acento (ex.: Augusto Carneiro → `acarneiro`).
+Em `databricks.yml`, troque `troque_pelo_seu_nome` pelo seu nome de aluno: primeira letra do nome + sobrenome, sem acento e em minúsculas (ex.: Augusto Carneiro → `acarneiro`). Ele vira o nome do seu schema (`academydb.acarneiro`) e aparece no nome de tudo o que você cria. Se alguém da turma já tiver o mesmo, acrescente um número (`acarneiro2`).
 
 ```yaml
   aluno:
@@ -55,7 +60,7 @@ Em `databricks.yml`, troque `troque_pelo_seu_nome` pelo seu nome de aluno: prime
     default: acarneiro
 ```
 
-## Passo 5: Deploy em `dev`
+## Passo 6: Deploy em `dev`
 > Bundles: Targets
 
 No painel **Deployments**, deixe o target `dev` selecionado e clique em **Deploy**. O diálogo lista o que vai ser criado:
@@ -65,12 +70,12 @@ No painel **Deployments**, deixe o target `dev` selecionado e clique em **Deploy
 
 O `mode: development` do target `dev` faz esses prefixos, para que o seu teste nunca esbarre no de outra pessoa, e pausa o schedule do job.
 
-## Passo 6: Rodar o job
+## Passo 7: Rodar o job
 > Jobs · Serverless
 
 Na lista **Bundle resources**, clique em **Run job** no job `autorizacoes_<aluno>`. Ele roda duas tasks: `pipeline` e, se ela passar, `validar`. O primeiro run leva ~2 min (o serverless está subindo).
 
-## Passo 7: Ver a falha
+## Passo 8: Ver a falha
 > Declarative Pipelines: Expectations
 
 A task `validar` fica vermelha:
@@ -83,12 +88,12 @@ Abra o pipeline (link na lista **Bundle resources**) e veja o grafo: a `silver_a
 
 Aproveite e clique em `bronze_autorizacao_eventos` → **Expectations**: as duas regras registram quantos eventos inválidos chegaram. Na bronze elas só avisam (warn); na view `eventos_validos`, descartam (drop).
 
-## Passo 8: TODO — trocar a silver por `AUTO CDC`
+## Passo 9: TODO — trocar a silver por `AUTO CDC`
 > Declarative Pipelines: AUTO CDC
 
 Em `src/pipeline/silver.py`, troque o bloco `@dp.table(...) def silver_autorizacao_status()` por um `AUTO CDC` SCD1: chave `autorizacao_id`, ordem por `event_ts`, origem `eventos_validos`. Mantenha o `delta.enableChangeDataFeed`, que o módulo 2 usa.
 
-Como validar: no passo 9, a task `validar` fica verde.
+Como validar: no passo 10, a task `validar` fica verde.
 
 <details markdown="1">
 <summary>👉 Solução</summary>
@@ -112,7 +117,7 @@ O `AUTO CDC` faz o MERGE de cada lote por você: deduplica, aplica os eventos na
 
 </details>
 
-## Passo 9: Rodar de novo em `dev`, com full refresh
+## Passo 10: Rodar de novo em `dev`, com full refresh
 > Declarative Pipelines: Full refresh
 
 Salve o arquivo. **Não precisa de novo deploy**: em `dev`, o pipeline e o job leem o código direto da sua Git folder. Novo deploy em `dev` só quando você muda um YAML.
@@ -128,14 +133,14 @@ A silver ainda guarda as linhas do run anterior, e trocar o tipo de flow (de app
 
 Se você rodar o job sem o full refresh, o pipeline termina sem erro, mas a silver continua com as linhas antigas e a `validar` falha de novo.
 
-## Passo 10: Deploy em `prod`
+## Passo 11: Deploy em `prod`
 > Bundles: Targets
 
 No painel **Deployments**, troque o target para `prod` e clique em **Deploy**. Agora os nomes vêm sem prefixo: o schema é `academydb.<aluno>`, e o job e o pipeline se chamam `autorizacoes_<aluno>`. Se o deploy disser que o schema já existe, outra pessoa escolheu o mesmo nome: troque o `aluno` (ex.: `acarneiro2`) e faça deploy de novo.
 
 > ⚠️ Em `prod`, o deploy **copia** o código para `.bundle/vida_saude/prod/files`, e o job roda essa cópia. Qualquer mudança de código depois disso só vale em `prod` depois de um novo deploy em `prod`. Em `dev`, como vimos, o código é lido direto da Git folder.
 
-## Passo 11: Rodar o job em `prod`
+## Passo 12: Rodar o job em `prod`
 > Jobs
 
 Na lista **Bundle resources**, clique em **Run job** no job de `prod`. Ele passa de primeira, porque o código já está corrigido. Em `prod`, o schedule está ligado: o job roda sozinho a cada 10 min, 2 min depois de cada lote do gerador, e a silver acompanha os dados que chegam ao longo do dia.

@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC # Gerador de eventos de autorização (líder)
 # MAGIC
-# MAGIC Task do job do gerador, criado pela preparação: cron a cada 10 min, um lote por run. Escreve eventos JSON (um por linha) em `academydb.shared.raw/autorizacao_eventos/`. Seed fixa: os números são sempre os mesmos.
+# MAGIC Task do job do gerador, criado pelo setup: cron a cada 10 min, um lote por run. Escreve eventos JSON (um por linha) em `academydb.shared.raw/autorizacao_eventos/`. Seed fixa: os números são sempre os mesmos.
 # MAGIC
 # MAGIC - Cada run escreve o próximo dos 42 lotes, sempre em **modo caos** (duplicatas e eventos atrasados) e com alguns eventos inválidos para as expectations.
 # MAGIC - Depois do lote 42, o notebook pausa o schedule do próprio job (widget `job_id = {{job.id}}`). Rodado à mão, sem `job_id`, só escreve o lote.
@@ -25,7 +25,7 @@ import json
 import os
 import sys
 
-sys.path.append(os.path.abspath("../bundle/src"))
+sys.path.append(os.path.abspath("../data/src"))
 from generator import N_BATCHES, batches, generate_events
 
 path = f"/Volumes/{catalog}/{schema}/{volume}/autorizacao_eventos"

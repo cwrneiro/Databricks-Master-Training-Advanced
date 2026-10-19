@@ -1,4 +1,4 @@
-"""Teste local do gerador: python3 bundle/src/test_generator.py"""
+"""Teste local do gerador: python3 "00 - Setup and teardown/data/src/test_generator.py" """
 
 import json
 

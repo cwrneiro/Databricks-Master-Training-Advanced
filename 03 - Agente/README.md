@@ -102,7 +102,7 @@ resources:
 
 **Deploy** em `prod` (~40 s). O índice fica pronto ~1 min depois.
 
-Abra `03 - Agente/03_agente.py`, conecte no **serverless**, preencha o widget `aluno` e rode a **seção 1**. Ela confere o índice e faz a busca que o agente vai fazer: a pergunta sobre ressonância devolve primeiro os trechos com "21 dias úteis".
+Abra `03 - Agente/notebook_agente.py`, conecte no **serverless**, preencha o widget `aluno` e rode a **seção 1**. Ela confere o índice e faz a busca que o agente vai fazer: a pergunta sobre ressonância devolve primeiro os trechos com "21 dias úteis".
 
 ## Passo 3: Genie space
 > Genie
@@ -152,7 +152,7 @@ O modelo decide sozinho qual tool chamar. O prompt de sistema só dá a regra: d
 ## Passo 5: Deploy do agente pelo web terminal
 > Agent Bricks · Web terminal
 
-No notebook `03_agente.py`, rode a **seção 2**: ela imprime os comandos com o caminho da sua pasta e o seu nome. Abra o web terminal (painel inferior do notebook → **Terminal**), cole os comandos e troque `<id do Genie space>` pelo ID do passo 3:
+No notebook `notebook_agente.py`, rode a **seção 2**: ela imprime os comandos com o caminho da sua pasta e o seu nome. Abra o web terminal (painel inferior do notebook → **Terminal**), cole os comandos e troque `<id do Genie space>` pelo ID do passo 3:
 
 ```bash
 pip install databricks-agentbricks==0.5.1
@@ -213,7 +213,7 @@ No fim de `resources/llm.model_service.yml`, alinhado com `config:`:
           privileges: [EXECUTE]
 ```
 
-O `USE CATALOG` no `academydb` o SP já tem: a preparação deu a todos os usuários da conta. Os grants ficam declarados junto com os recursos, então um deploy em outro workspace leva as permissões junto.
+O `USE CATALOG` no `academydb` o SP já tem: o setup deu a todos os usuários da conta. Os grants ficam declarados junto com os recursos, então um deploy em outro workspace leva as permissões junto.
 
 </details>
 
@@ -224,7 +224,7 @@ Abra a URL do app (a seção 3 mostra). A UI de chat já vem com o projeto: cada
 
 > Deixe o **Agent model** no padrão (`academydb.<aluno>.llm (project default)`). Os outros modelos da lista são do `system.ai`, onde o SP do app não tem grant seu.
 
-Faça as perguntas de `bundle/docs/perguntas.md`:
+Faça as perguntas de [`perguntas.md`](perguntas.md):
 
 - **RAG** (documentos): resposta exata, por exemplo "21 dias úteis" para a ressonância (~15 s).
 - **Genie** (tabelas): os números dependem de quantos lotes já chegaram, e o `perguntas.md` traz as faixas esperadas. Cada pergunta à Genie leva de ~30 s a alguns minutos.

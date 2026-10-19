@@ -77,7 +77,7 @@ Os dados chegam o dia inteiro (42 lotes, um a cada 10 min), então as respostas 
 
 O total de autorizações cresce com os lotes: 554, 1.026 e 2.000.
 
-**Snippet Python para recalcular** com `k` lotes (rode em `bundle/src/`):
+**Snippet Python para recalcular** com `k` lotes (rode em `00 - Setup and teardown/data/src/`):
 ```python
 from generator import batches, generate_events, is_valid
 

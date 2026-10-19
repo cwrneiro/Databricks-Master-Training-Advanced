@@ -7,6 +7,10 @@ site_url: https://cwrneiro.github.io/Databricks-Master-Training-Advanced/
 repo_url: https://github.com/cwrneiro/Databricks-Master-Training-Advanced
 edit_uri: edit/main/
 
+# Link no rodapé para o setup da turma (líder). Caminho absoluto a partir da
+# raiz do site publicado.
+copyright: '<a href="/Databricks-Master-Training-Advanced/00%20-%20Setup%20and%20teardown/">00 - Setup and teardown</a>'
+
 # O repositório inteiro é a fonte da documentação (READMEs ficam intocados).
 # Por isso o site precisa ser construído FORA da árvore do repo (o MkDocs
 # recusa um site_dir dentro do docs_dir). `mkdocs serve` ignora isso e usa
@@ -78,15 +82,14 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
-# Páginas fora do menu lateral. "00 - Preparação" é do líder: fica acessível pela
-# home e pela abertura. As perguntas do agente são de apoio dos módulos 3 e 4.
+# Páginas fora do menu lateral. "00 - Setup and teardown" é do líder: fica acessível
+# pelo rodapé e pela home. As perguntas do agente são de apoio dos módulos 3 e 4.
 not_in_nav: |
-  00 - Preparação/README.md
-  bundle/docs/perguntas.md
+  00 - Setup and teardown/README.md
+  03 - Agente/perguntas.md
 
 nav:
   - Início: README.md
-  - 00 - Abertura: "00 - Abertura/README.md"
   - 01 - Pipeline e bundle: "01 - Pipeline e bundle/README.md"
   - 02 - Lakebase: "02 - Lakebase/README.md"
   - 03 - Agente: "03 - Agente/README.md"

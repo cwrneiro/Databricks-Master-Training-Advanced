@@ -22,8 +22,8 @@ Prosa em PT-BR; código, nomes de tabelas e identificadores em inglês/snake_cas
 
 - **Aluno**: o participante. Use "aluno" (não "usuário", nem "participante") nos textos do workshop.
 - **Schema do aluno**: `academydb.<aluno>` (primeira letra do nome + sobrenome, ex.: `acarneiro`), criado pelo bundle. No target `dev` ele se chama `dev_<usuario>_<aluno>`. Todos os objetos de UC do aluno ficam aqui. As camadas medallion são **prefixos** de tabela (`bronze_`, `silver_`, `gold_`), não schemas.
-- **Líder**: o admin do workspace do cliente (um por workspace). Roda a preparação, dispara o gerador na abertura e roda o teardown.
-- **Recursos compartilhados**: criados pela preparação e usados por todos (catálogo `academydb`, grupo, schema `academydb.shared`, projeto Lakebase, endpoints de AI Search, antigo Vector Search). Ver ADR-0002.
+- **Líder**: o admin do workspace do cliente (um por workspace). Roda o setup, dispara o gerador na abertura e roda o teardown.
+- **Recursos compartilhados**: criados pelo setup e usados por todos (catálogo `academydb`, grupo, schema `academydb.shared`, projeto Lakebase, endpoints de AI Search, antigo Vector Search). Ver ADR-0002.
 - **Gerador** (producer): job do líder que escreve um lote de eventos JSON a cada 10 min em `academydb.shared.raw`, o dia inteiro (42 lotes). Seed fixa, sempre em modo caos e com alguns eventos inválidos.
 - **Modo caos**: duplicatas e eventos fora de ordem. As duplicatas de um lote caem no lote seguinte.
 - **Falha do dev**: a primeira execução do módulo 1, sem `AUTO CDC`. A silver ganha uma linha por evento e a task `validar` fica vermelha. O aluno corrige, valida em dev e promove para prod.

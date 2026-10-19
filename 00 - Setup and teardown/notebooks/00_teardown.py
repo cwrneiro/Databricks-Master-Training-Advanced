@@ -6,7 +6,7 @@
 # MAGIC %md
 # MAGIC # Teardown do workshop (líder)
 # MAGIC
-# MAGIC Remove o que a preparação e os alunos criaram. **Idempotente**: o que já não existe é ignorado, então é seguro rodar de novo. Rode como **administrador de conta**.
+# MAGIC Remove o que o setup e os alunos criaram. **Idempotente**: o que já não existe é ignorado, então é seguro rodar de novo. Rode como **administrador de conta**.
 # MAGIC
 # MAGIC Os alunos são descobertos pelos schemas que o bundle criou (comentário `Schema do aluno <aluno> no workshop Vida+ Saúde`), tanto `dev_<usuario>_<aluno>` quanto `<aluno>`. Nada fora disso é tocado.
 # MAGIC
@@ -40,7 +40,7 @@ from databricks.sdk import WorkspaceClient
 
 w = WorkspaceClient()
 
-# Mesmos nomes da preparação.
+# Mesmos nomes do setup.
 CATALOG = "academydb"
 SHARED = f"{CATALOG}.shared"
 GROUP = "edia_alunos"
@@ -201,7 +201,7 @@ if DELETE_ALUNOS:
 if DELETE_COMPARTILHADOS:
     for _j in w.jobs.list(name=JOB_GERADOR):
         delete("/api/2.2/jobs/delete", f"Job '{JOB_GERADOR}'", method="POST", body={"job_id": _j.job_id})
-    # purge: sem ele o projeto fica 7 dias em soft delete e bloqueia o nome na próxima preparação.
+    # purge: sem ele o projeto fica 7 dias em soft delete e bloqueia o nome no próximo setup.
     delete(f"/api/2.0/postgres/projects/{LAKEBASE}", f"Projeto Lakebase '{LAKEBASE}'", query={"purge": "true"})
     try:
         spark.sql(f"DROP SCHEMA IF EXISTS {SHARED} CASCADE")

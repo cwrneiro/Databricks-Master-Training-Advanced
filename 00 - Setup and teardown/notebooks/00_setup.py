@@ -4,8 +4,8 @@
 # environment_version = "5"
 # ///
 # MAGIC %md
-# MAGIC # Preparação e checagem do workshop (líder)
-# MAGIC Rode como **administrador de conta**, no **serverless**, a partir da Git folder do repo (o notebook lê `bundle/` e cria o job do gerador apontando para `00_gerador_eventos`). Faz tudo de uma vez:
+# MAGIC # Setup e checagem do workshop (líder)
+# MAGIC Rode como **administrador de conta**, no **serverless**, a partir da Git folder do repo (o notebook lê `data/` e cria o job do gerador apontando para `00_gerador_eventos`). Faz tudo de uma vez:
 # MAGIC 1. **Prepara**: grupo `edia_alunos`, catálogo `academydb`, schema `academydb.shared` com o Volume `raw` (PDFs em `docs/`), job do gerador (pausado), projeto Lakebase, `ceil(N/40)` endpoints de AI Search aquecidos e os grants (ADR-0002).
 # MAGIC 2. **Checa**: relatório ✅/❌ com tudo o que o dia usa (serverless, Lakebase, AI Search, Genie, Apps, Agent Runtime, model service, grants do `system.ai`, web terminal).
 # MAGIC
@@ -68,12 +68,12 @@ N_ENDPOINTS = math.ceil(len(ALUNOS) / ALUNOS_POR_ENDPOINT)
 VS_ENDPOINTS = [f"{VS_PREFIX}{i}" for i in range(1, N_ENDPOINTS + 1)]
 
 _notebook = dbutils.notebook.entry_point.getDbutils().notebook().getContext().notebookPath().get()
-REPO = "/Workspace" + _notebook.rsplit("/", 2)[0]  # raiz da Git folder
+DATA = "/Workspace" + _notebook.rsplit("/", 2)[0] + "/data"  # 00 - Setup and teardown/data na Git folder
 GERADOR_NOTEBOOK = _notebook.rsplit("/", 1)[0] + "/00_gerador_eventos"
 
 print(f"Catálogo: {CATALOG} (criar={CREATE_CATALOG})  ·  Compartilhado: {VOLUME}")
 print(f"Grupo: {GROUP}  ·  Job do gerador: {JOB_GERADOR}  ·  Lakebase: {LAKEBASE}")
-print(f"AI Search: {', '.join(VS_ENDPOINTS)}  ·  Repo: {REPO}")
+print(f"AI Search: {', '.join(VS_ENDPOINTS)}  ·  Dados: {DATA}")
 print(f"Alunos ({len(ALUNOS)}):", *[f"  - {a}" for a in ALUNOS], sep="\n")
 
 # COMMAND ----------
@@ -160,7 +160,7 @@ print("Funções auxiliares definidas.")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 3. Preparação (idempotente)
+# MAGIC ## 3. Setup (idempotente)
 
 # COMMAND ----------
 
@@ -249,15 +249,15 @@ spark.sql(f"CREATE SCHEMA IF NOT EXISTS {SHARED} COMMENT 'Workshop Vida+ Saúde:
 spark.sql(f"CREATE VOLUME IF NOT EXISTS {VOLUME} COMMENT 'Eventos do gerador (autorizacao_eventos/) e PDFs (docs/)'")
 print(f"{OK} {SHARED} e Volume {VOLUME} prontos.")
 
-# PDFs da operadora (versionados em bundle/docs/) → Volume.
+# PDFs da operadora (versionados em data/docs/) → Volume.
 import os
 import shutil
 
 os.makedirs(f"{VOLUME_PATH}/docs", exist_ok=True)
 os.makedirs(f"{VOLUME_PATH}/autorizacao_eventos", exist_ok=True)
-PDFS = sorted(f for f in os.listdir(f"{REPO}/bundle/docs") if f.endswith(".pdf"))
+PDFS = sorted(f for f in os.listdir(f"{DATA}/docs") if f.endswith(".pdf"))
 for _pdf in PDFS:
-    shutil.copyfile(f"{REPO}/bundle/docs/{_pdf}", f"{VOLUME_PATH}/docs/{_pdf}")
+    shutil.copyfile(f"{DATA}/docs/{_pdf}", f"{VOLUME_PATH}/docs/{_pdf}")
 print(f"{OK} {len(PDFS)} PDFs copiados para {VOLUME_PATH}/docs/.")
 
 # COMMAND ----------
@@ -434,7 +434,7 @@ def _job():
 def _serverless():
     _dry = api("POST", "/api/2.0/pipelines", body={
         "name": "edia-checagem-dry-run", "serverless": True, "catalog": CATALOG, "schema": "shared",
-        "dry_run": True, "libraries": [{"glob": {"include": f"{REPO}/bundle/src/**"}}]})
+        "dry_run": True, "libraries": [{"glob": {"include": f"{DATA}/src/**"}}]})
     return os.environ.get("IS_SERVERLESS") == "TRUE" and "effective_settings" in _dry
 
 

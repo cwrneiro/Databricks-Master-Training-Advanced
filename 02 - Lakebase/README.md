@@ -94,7 +94,7 @@ No **Catalog**, a synced table aparece em `academydb` → `<aluno>` → `autoriz
 ## Passo 5: Ver os dados no Postgres
 > Lakebase · Notebooks
 
-Abra `02 - Lakebase/02_lakebase.py`, conecte no **serverless**, preencha o widget `aluno` com o seu nome de aluno e clique em **Run all**. O notebook:
+Abra `02 - Lakebase/notebook_lakebase.py`, conecte no **serverless**, preencha o widget `aluno` com o seu nome de aluno e clique em **Run all**. O notebook:
 
 1. conecta no Postgres com o seu usuário (o token OAuth faz o papel da senha);
 2. compara a `autorizacao_status` do Postgres com a silver;

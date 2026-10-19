@@ -9,7 +9,7 @@ include:
 variables:
   aluno:
     description: Seu nome de aluno (primeira letra do nome + sobrenome, por exemplo acarneiro). Vira o nome do seu schema.
-    default: troque_pelo_seu_nome # TODO (passo 4): troque pelo seu nome de aluno
+    default: troque_pelo_seu_nome # TODO (passo 5): troque pelo seu nome de aluno
   catalog:
     description: Catálogo do workshop. Não mude.
     default: academydb

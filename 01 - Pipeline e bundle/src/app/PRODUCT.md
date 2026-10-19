@@ -30,7 +30,7 @@ Uma tela de atendimento: achar uma autorização pelo ID (ou pelo beneficiário/
 - Sem ativos de marca; a identidade visual fica a critério do design (decisão do usuário, 2026-10-17).
 
 ## Evidence on Hand
-- Dados sintéticos do gerador (`bundle/src/generator.py`) e perguntas de exemplo com respostas conferidas em `bundle/docs/perguntas.md`. Não inventar números, clientes ou depoimentos.
+- Dados sintéticos do gerador (`00 - Setup and teardown/data/src/generator.py`) e perguntas de exemplo com respostas conferidas em `03 - Agente/perguntas.md`. Não inventar números, clientes ou depoimentos.
 
 ## Product Principles
 - Status primeiro: a pergunta mais comum ("como está a guia X?") se resolve com uma busca e um olhar.
