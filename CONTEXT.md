@@ -1,6 +1,6 @@
 # Engenharia de Dados e IA no Databricks
 
-Workshop hands-on de 1 dia (~7h30), síncrono, para até 50 **alunos** num workspace Databricks único. Um fluxo contínuo leva um **evento de autorização** do gerador até um app: bundle (pipeline SDP + job) → Lakebase → agente → app. Spec completa: `.scratch/workshop/spec.md`. Decisões: `docs/adr/`.
+Workshop hands-on de 1 dia (~7h30), síncrono, para até 50 **alunos** num workspace Databricks único. Um fluxo contínuo leva um **evento de autorização** do gerador até um app: bundle (pipeline SDP + job) → Lakebase → agente → app. Spec completa: `.scratch/workshop/spec.md` (só local, fora do repo público). Decisões: `docs/adr/`.
 
 Prosa em PT-BR; código, nomes de tabelas e identificadores em inglês/snake_case sem acento.
 
