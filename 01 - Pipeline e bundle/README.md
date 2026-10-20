@@ -1,6 +1,8 @@
 # 01 - Pipeline e bundle
 
-Neste módulo você recebe um **bundle** pronto: um `databricks.yml` que declara, em código, o seu schema, um pipeline e um job. Você faz deploy em `dev`, vê o job falhar, corrige o pipeline, confirma em `dev` e promove para `prod`. O resto do dia acontece em cima do que sobe aqui.
+Os eventos de autorização já estão chegando no Volume, um lote a cada 10 min. Vamos transformá-los no status atual de cada guia.
+
+Você recebe um **bundle** pronto: um `databricks.yml` que declara, em código, o seu schema, um pipeline e um job. Você faz deploy em `dev`, vê o job falhar, corrige o pipeline e promove para `prod`. Tudo o que vem depois, no resto do dia, se apoia no que você sobe aqui.
 
 ## Objetivo
 - Conhecer a estrutura de um bundle e a UI de bundles do workspace

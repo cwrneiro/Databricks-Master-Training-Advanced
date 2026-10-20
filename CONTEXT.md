@@ -30,9 +30,18 @@ Prosa em PT-BR; código, nomes de tabelas e identificadores em inglês/snake_cas
 - **Equivalente em Structured Streaming** ("por baixo do capô"): comentário `# --- Equivalente em Structured Streaming ---` logo abaixo de cada bloco do pipeline, com o mesmo código "na mão". Só leitura.
 - **Checkpoint de validação**: célula `assert` que confirma o estado esperado ao fim de uma etapa. Não confundir com o *checkpoint* de streaming.
 - **Guia do módulo**: as páginas de um módulo no site. O `README.md` da pasta é a entrada (objetivo, arquitetura e a lista das partes), e os passos ficam nas **partes** ao lado (`1.1 - Deploy do bundle.md`, `1.2 - Job e pipeline.md`...). Os passos são numerados em sequência no módulo inteiro, não por parte: "passo 9" é um endereço estável, citado nos notebooks e no código.
-- **TODO**: célula `# TODO` que o aluno completa. A solução fica num `<details>` no guia do módulo.
+- **Marcador `# TODO (passo N)`**: aponta, no código ou no notebook, o que o aluno muda num passo. O guia mostra o código a colar à vista; só a solução do 🎯 Desafio fica fechada num `<details>`.
 - **App do agente**: o app `agent-bricks-<aluno>` que o aluno publica com `agentbricks deploy` no módulo 3. O código vem pronto e fica fora do bundle. Ver ADR-0006.
 - **App do atendente**: o app `vida-saude-<aluno>` do módulo 4 (AppKit, código pronto em `01 - Pipeline e bundle/src/app/`), declarado no bundle. Lê o status e grava observações no Lakebase pelo SP do app, e conversa com o app do agente com o token de quem está logado.
 - **Bundle**: o `databricks.yml` na pasta do módulo 1. Vem pronto com schema, pipeline e job, e cresce até o módulo 4. Targets `dev` e `prod`. Ver ADR-0005.
 - **Model service do aluno**: `academydb.<aluno>.llm`, um model service do AI Gateway declarado no bundle que aponta para o Claude do `system.ai`. Existe para que o aluno, dono dele, possa concedê-lo ao SP do app do agente.
 - **Versão principal** / **versão do cliente**: o mesmo conteúdo. A versão do cliente só acrescenta a página `analogias.md` do módulo 01 (Kafka/K8s/Helm). Ver ADR-0004.
+
+## Site
+
+O repositório também é um site [Zensical](https://zensical.org), publicado em https://cwrneiro.github.io/Databricks-Master-Training-Advanced/ a cada push no `main`. Para ver localmente:
+
+```bash
+pip install -r requirements-docs.txt
+zensical serve
+```
