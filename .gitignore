@@ -4,3 +4,6 @@
 .scratch/
 __pycache__/
 .databricks/
+# Saída e cache do zensical build.
+site/
+.cache/

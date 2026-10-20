@@ -17,11 +17,11 @@ jobs:
           python-version: "3.x"
       - run: pip install -r requirements-docs.txt
       # Site principal na raiz e versão do cliente em /compared/ (ADR-0004).
-      # Nessa ordem: o build principal limpa o ../site inteiro.
-      - run: mkdocs build --strict
-      - run: mkdocs build --strict -f mkdocs-cliente.yml
-      # O mesmo que o mkdocs gh-deploy faz por baixo, mas com as duas versões.
+      # Nessa ordem: o build principal limpa o site/ inteiro.
+      - run: zensical build --strict
+      - run: zensical build --strict -f mkdocs-cliente.yml
+      # Publica o site/ (as duas versões) no branch gh-pages.
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          ghp-import --no-jekyll --push --force --message "Publicar documentação ($GITHUB_SHA)" ../site
+          ghp-import --no-jekyll --push --force --message "Publicar documentação ($GITHUB_SHA)" site

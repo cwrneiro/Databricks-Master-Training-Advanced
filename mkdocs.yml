@@ -12,11 +12,10 @@ edit_uri: edit/main/
 copyright: '<a href="/Databricks-Master-Training-Advanced/00%20-%20Setup%20and%20teardown/">00 - Setup and teardown</a>'
 
 # O repositório inteiro é a fonte da documentação (READMEs ficam intocados).
-# Por isso o site precisa ser construído FORA da árvore do repo (o MkDocs
-# recusa um site_dir dentro do docs_dir). `mkdocs serve` ignora isso e usa
-# um diretório temporário; `mkdocs build` escreve em ../site.
+# Construído com o Zensical, que lê este mkdocs.yml. Ele exige o site_dir
+# dentro do repo: site/ fica no .gitignore e no exclude_docs.
 docs_dir: .
-site_dir: ../site
+site_dir: site
 
 # Fora do site: material interno do desenvolvimento, o node_modules do app e
 # os arquivos do template do agente (são para o agentbricks, não para o aluno).
@@ -33,11 +32,15 @@ exclude_docs: |
   node_modules/
   dist/
   __pycache__/
+  /site/
   /01 - Pipeline e bundle/src/app/*.md
   /03 - Agente/agente/*.md
 
+# classic: o visual do Material for MkDocs (header lava red com o logo
+# branco). O padrão do Zensical (modern) tem header neutro.
 theme:
   name: material
+  variant: classic
   language: pt-BR
   logo: assets/databricks-lockup-white.svg
   favicon: assets/databricks-symbol.svg
@@ -64,12 +67,9 @@ theme:
 extra_css:
   - assets/extra.css
 
-# same-dir permite mkdocs.yml na raiz junto dos READMEs (MkDocs recusa
-# docs_dir: . sem ele). `search` precisa ser listado ao definir plugins.
 plugins:
   - search:
       lang: pt
-  - same-dir
 
 markdown_extensions:
   - tables

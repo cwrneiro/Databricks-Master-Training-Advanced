@@ -1,13 +1,13 @@
 # Versão do cliente (ADR-0004): o site principal + a página analogias.md do
 # módulo 01. Publicada em /compared/ pelo .github/workflows/docs.yml.
-# Build local: `mkdocs build && mkdocs build -f mkdocs-cliente.yml`, nessa ordem
-# (o build principal limpa o ../site inteiro, inclusive ../site/compared).
+# Build local: `zensical build && zensical build -f mkdocs-cliente.yml`, nessa
+# ordem (o build principal limpa o site/ inteiro, inclusive site/compared).
 INHERIT: mkdocs.yml
 
 # O INHERIT só funde dicionários: strings e listas daqui substituem as do
 # mkdocs.yml. Por isso exclude_docs, copyright e nav são repetidos inteiros.
 site_url: https://cwrneiro.github.io/Databricks-Master-Training-Advanced/compared/
-site_dir: ../site/compared
+site_dir: site/compared
 
 copyright: '<a href="/Databricks-Master-Training-Advanced/compared/00%20-%20Setup%20and%20teardown/">00 - Setup and teardown</a>'
 
@@ -22,6 +22,7 @@ exclude_docs: |
   node_modules/
   dist/
   __pycache__/
+  /site/
   /01 - Pipeline e bundle/src/app/*.md
   /03 - Agente/agente/*.md
 

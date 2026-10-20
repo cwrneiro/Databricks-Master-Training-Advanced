@@ -101,9 +101,9 @@ O repositório é `https://github.com/cwrneiro/Databricks-Master-Training-Advanc
 
 ## Site
 
-Este repositório também é um site MkDocs, publicado em https://cwrneiro.github.io/Databricks-Master-Training-Advanced/ a cada push no `main`. Para ver localmente:
+Este repositório também é um site [Zensical](https://zensical.org), publicado em https://cwrneiro.github.io/Databricks-Master-Training-Advanced/ a cada push no `main`. Para ver localmente:
 
 ```bash
 pip install -r requirements-docs.txt
-mkdocs serve
+zensical serve
 ```
