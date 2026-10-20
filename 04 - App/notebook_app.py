@@ -6,12 +6,12 @@
 # MAGIC %md
 # MAGIC # 04 - App
 # MAGIC
-# MAGIC Este notebook acompanha o README do módulo. Rode **uma seção por vez**, no passo que o README indicar:
+# MAGIC Este notebook acompanha o guia do módulo. Rode **uma seção por vez**, no passo que o guia indicar:
 # MAGIC 1. **Seção 1** (passo 3): mostra o app e o service principal (SP) dele, e conecta no Postgres.
 # MAGIC 2. **Seção 2** (passo 3): o TODO, os GRANTs no Postgres para o SP do app, e o checkpoint.
 # MAGIC 3. **Seção 3** (passo 4): mostra as observações que o app gravou.
 # MAGIC
-# MAGIC Rode no **serverless**, depois do passo 2 do README (deploy em `prod` e **Run** do app).
+# MAGIC Rode no **serverless**, depois do passo 2 do guia (deploy em `prod` e **Run** do app).
 
 # COMMAND ----------
 
@@ -40,7 +40,7 @@ implantado = app.active_deployment and app.active_deployment.status.state.value 
 print(f"App {APP}: {app.url}")
 print(f"Application ID do SP: {sp}")
 assert implantado, (
-    f"O app {APP} existe, mas o código ainda não subiu. Em Bundle resources, clique em Run no app (passo 2 do README).")
+    f"O app {APP} existe, mas o código ainda não subiu. Em Bundle resources, clique em Run no app (passo 2 do guia).")
 
 # COMMAND ----------
 

@@ -6,13 +6,13 @@
 # MAGIC %md
 # MAGIC # 03 - Agente
 # MAGIC
-# MAGIC Este notebook acompanha o README do módulo. Rode **uma seção por vez**, no passo que o README indicar:
+# MAGIC Este notebook acompanha o guia do módulo. Rode **uma seção por vez**, no passo que o guia indicar:
 # MAGIC 1. **Seção 1** (passo 2): confere os trechos dos documentos e o índice de AI Search, e faz uma busca nele.
-# MAGIC 2. **Seção 2** (passo 5): mostra os comandos de deploy do agente, já com o seu caminho e o seu nome.
-# MAGIC 3. **Seção 3** (passo 6): mostra o application ID do service principal do app do agente.
-# MAGIC 4. **Checkpoint** (passo 6, depois do deploy do bundle): confere os grants do SP.
+# MAGIC 2. **Seção 2** (passo 6): mostra os comandos de deploy do agente, já com o seu caminho e o seu nome.
+# MAGIC 3. **Seção 3** (passo 7): mostra o application ID do service principal do app do agente.
+# MAGIC 4. **Checkpoint** (passo 7, depois do deploy do bundle): confere os grants do SP.
 # MAGIC
-# MAGIC Rode no **serverless**. O web terminal do passo 5 é aberto a partir deste notebook.
+# MAGIC Rode no **serverless**. O web terminal do passo 6 é aberto a partir deste notebook.
 
 # COMMAND ----------
 
@@ -83,7 +83,7 @@ print(f"Application ID do SP (cole em var.agent_sp): {sp}")
 
 # MAGIC %md
 # MAGIC ## ✅ Checkpoint de validação
-# MAGIC Rode depois do deploy do bundle com os `grants` (TODO do passo 6).
+# MAGIC Rode depois do deploy do bundle com os `grants` (TODO do passo 7).
 
 # COMMAND ----------
 

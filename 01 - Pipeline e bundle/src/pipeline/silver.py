@@ -23,7 +23,7 @@ def eventos_validos():
 
 # TODO (passo 9): esta tabela deveria ter uma linha por autorização, com o status atual.
 # Em append, ela recebe uma linha por evento, duplicatas incluídas, e a task validar falha.
-# Troque o bloco abaixo por AUTO CDC (SCD1). A solução está no README do módulo.
+# Troque o bloco abaixo por AUTO CDC (SCD1). A solução está no passo 9 do guia do módulo.
 @dp.table(
     comment="Status atual de cada autorização.",
     table_properties={"delta.enableChangeDataFeed": "true"},

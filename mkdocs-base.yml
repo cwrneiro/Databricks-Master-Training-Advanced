@@ -64,6 +64,8 @@ theme:
     - navigation.instant.progress
     - navigation.top
     - navigation.footer
+    # O README de cada módulo abre ao clicar no módulo; as partes (1.1, 1.2...) ficam abaixo.
+    - navigation.indexes
     - search.suggest
     - content.code.copy
 

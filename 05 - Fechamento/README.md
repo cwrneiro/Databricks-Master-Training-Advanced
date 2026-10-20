@@ -153,9 +153,9 @@ Hoje, os dados vão do lakehouse para o Postgres. As observações que os atende
 Com ele, a `observacao_atendente` vira `lb_observacao_atendente_history`, pode entrar no pipeline como mais uma bronze, e a Genie, com essa tabela no space, responderia "quais prestadores mais pedem prioridade?". Para ligar, o admin habilita o preview, as tabelas precisam de `REPLICA IDENTITY FULL`, e quem configura precisa de `CAN MANAGE` no projeto Lakebase.
 
 ### O que ficou só no guia
-- **CLI de bundles, `run_as` e CI/CD**: no módulo 1, seção **O mesmo pelo CLI, e num CI**.
-- **Synced table Continuous**: no módulo 2, seção **Triggered, Continuous ou Snapshot**.
-- **Structured Streaming "na mão"**: os comentários abaixo de cada bloco do pipeline, e a seção **Por que SDP é o padrão** do módulo 1.
+- **CLI de bundles, `run_as` e CI/CD**: na 1.2, seção **O mesmo pelo CLI, e num CI**.
+- **Synced table Continuous**: na 2.1, seção **Triggered, Continuous ou Snapshot**.
+- **Structured Streaming "na mão"**: os comentários abaixo de cada bloco do pipeline, e a seção **Por que SDP é o padrão** da 1.2.
 - **Escrever o agente**: o projeto do módulo 3 nasceu de `agentbricks init --framework langgraph`. Para outro caso de uso, o caminho é o mesmo: trocar o prompt e as tools em `agent/agent.py` e `agent.toml`.
 - **Mudar o app**: o código está em `01 - Pipeline e bundle/src/app/` (`server/` em Node.js, `client/` em React). Edite, faça **Deploy** no bundle e **Deploy** na página do app (ou `databricks bundle run -t prod vida_saude`, que sobe o código pelo CLI).
 

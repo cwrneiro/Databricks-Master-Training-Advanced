@@ -11,7 +11,7 @@
 # MAGIC 2. confere que a cópia no Postgres acompanha a silver;
 # MAGIC 3. cria a tabela `observacao_atendente`, onde o app do módulo 4 grava as observações.
 # MAGIC
-# MAGIC Rode no **serverless**, depois de fazer o passo 4 do README (deploy em `prod` e um **Run job** verde).
+# MAGIC Rode no **serverless**, depois de fazer o passo 4 do guia (deploy em `prod` e um **Run job** verde).
 
 # COMMAND ----------
 
@@ -107,7 +107,7 @@ print(sql(f'SELECT * FROM "{aluno}".observacao_atendente ORDER BY id DESC LIMIT 
 
 assert pg_linhas > 0, (
     "A autorizacao_status do Postgres está vazia. Confira se o job rodou depois do deploy em prod "
-    "e se a task sync_lakebase ficou verde (passo 4 do README).")
+    "e se a task sync_lakebase ficou verde (passo 4 do guia).")
 assert pg_linhas <= silver.n, f"O Postgres tem {pg_linhas} autorizações e a silver só {silver.n}: algo está errado no sync."
 assert sql(f'SELECT count(*) FROM "{aluno}".observacao_atendente WHERE id = %s', (novo_id,))[0][0] == 1
 print(f"✅ Postgres com {pg_linhas} autorizações e observacao_atendente pronta.")

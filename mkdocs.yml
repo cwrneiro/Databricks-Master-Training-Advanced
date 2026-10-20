@@ -3,8 +3,22 @@ INHERIT: mkdocs-base.yml
 
 nav:
   - Início: README.md
-  - 01 - Pipeline e bundle: "01 - Pipeline e bundle/README.md"
-  - 02 - Lakebase: "02 - Lakebase/README.md"
-  - 03 - Agente: "03 - Agente/README.md"
-  - 04 - App: "04 - App/README.md"
+  - 01 - Pipeline e bundle:
+      - "01 - Pipeline e bundle/README.md"
+      - "01 - Pipeline e bundle/1.1 - Deploy do bundle.md"
+      - "01 - Pipeline e bundle/1.2 - Job e pipeline.md"
+  - 02 - Lakebase:
+      - "02 - Lakebase/README.md"
+      - "02 - Lakebase/2.1 - Synced table no bundle.md"
+      - "02 - Lakebase/2.2 - Populando a base.md"
+  - 03 - Agente:
+      - "03 - Agente/README.md"
+      - "03 - Agente/3.1 - AI Search.md"
+      - "03 - Agente/3.2 - Genie space.md"
+      - "03 - Agente/3.3 - Deploy do agente.md"
+      - "03 - Agente/3.4 - Testando o agente.md"
+  - 04 - App:
+      - "04 - App/README.md"
+      - "04 - App/4.1 - App no bundle.md"
+      - "04 - App/4.2 - Usando o app.md"
   - 05 - Fechamento: "05 - Fechamento/README.md"

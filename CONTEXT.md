@@ -29,7 +29,7 @@ Prosa em PT-BR; código, nomes de tabelas e identificadores em inglês/snake_cas
 - **Falha do dev**: a primeira execução do módulo 1, sem `AUTO CDC`. A silver ganha uma linha por evento e a task `validar` fica vermelha. O aluno corrige, valida em dev e promove para prod.
 - **Equivalente em Structured Streaming** ("por baixo do capô"): comentário `# --- Equivalente em Structured Streaming ---` logo abaixo de cada bloco do pipeline, com o mesmo código "na mão". Só leitura.
 - **Checkpoint de validação**: célula `assert` que confirma o estado esperado ao fim de uma etapa. Não confundir com o *checkpoint* de streaming.
-- **TODO**: célula `# TODO` que o aluno completa. A solução fica num `<details>` no README do módulo.
+- **TODO**: célula `# TODO` que o aluno completa. A solução fica num `<details>` no guia do módulo.
 - **App do agente**: o app `agent-bricks-<aluno>` que o aluno publica com `agentbricks deploy` no módulo 3. O código vem pronto e fica fora do bundle. Ver ADR-0006.
 - **App do atendente**: o app `vida-saude-<aluno>` do módulo 4 (AppKit, código pronto em `01 - Pipeline e bundle/src/app/`), declarado no bundle. Lê o status e grava observações no Lakebase pelo SP do app, e conversa com o app do agente com o token de quem está logado.
 - **Bundle**: o `databricks.yml` na pasta do módulo 1. Vem pronto com schema, pipeline e job, e cresce até o módulo 4. Targets `dev` e `prod`. Ver ADR-0005.
