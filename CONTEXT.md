@@ -35,7 +35,7 @@ Prosa em PT-BR; código, nomes de tabelas e identificadores em inglês/snake_cas
 - **App do atendente**: o app `vida-saude-<aluno>` do módulo 4 (AppKit, código pronto em `01 - Pipeline e bundle/src/app/`), declarado no bundle. Lê o status e grava observações no Lakebase pelo SP do app, e conversa com o app do agente com o token de quem está logado.
 - **Bundle**: o `databricks.yml` na pasta do módulo 1. Vem pronto com schema, pipeline e job, e cresce até o módulo 4. Targets `dev` e `prod`. Ver ADR-0005.
 - **Model service do aluno**: `academydb.<aluno>.llm`, um model service do AI Gateway declarado no bundle que aponta para o Claude do `system.ai`. Existe para que o aluno, dono dele, possa concedê-lo ao SP do app do agente.
-- **Versão principal** / **versão do cliente**: o mesmo conteúdo. A versão do cliente só acrescenta a página `analogias.md` do módulo 01 (Kafka/K8s/Helm). Ver ADR-0004.
+- **Versão principal** / **versão do cliente**: o mesmo conteúdo. A versão do cliente só tem os módulos 01 e 02 (sem Início) e acrescenta a página `analogias.md` do módulo 01 (Kafka/K8s/Helm). Ver ADR-0004.
 
 ## Convenções do guia
 
