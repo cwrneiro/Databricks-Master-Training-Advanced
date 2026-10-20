@@ -1,8 +1,10 @@
 # 04 - App
 
-Até aqui, tudo o que você construiu se vê pelo Databricks: o pipeline, o Postgres, o agente. O atendente da Vida+ Saúde precisa de uma tela só, onde ele procura uma guia, vê o status, anota o que o prestador disse na ligação e tira dúvidas com o agente. Neste módulo você sobe essa tela, o **app do atendente**, como mais um recurso do seu bundle.
+Você já tem o pipeline, o Postgres e o agente, mas tudo isso só se vê pelo Databricks. Agora vamos juntar tudo numa tela só, para o atendente.
 
-O código do app vem pronto em `01 - Pipeline e bundle/src/app/` (AppKit: Node.js no servidor, React na tela). Você não escreve React: declara o app, faz deploy, dá a ele acesso ao Postgres e usa.
+Nela, o atendente procura uma guia, vê o status, anota o que o prestador disse na ligação e tira dúvidas com o agente. Neste módulo, você sobe essa tela, o **app do atendente**, como mais um recurso do seu bundle.
+
+O código vem pronto em `01 - Pipeline e bundle/src/app/` (AppKit: Node.js no servidor, React na tela). Você não escreve React: declara o app, faz deploy, dá a ele acesso ao Postgres e usa.
 
 ## Objetivo
 - Declarar o app no bundle, com os recursos de que ele precisa (o Postgres e o app do agente)

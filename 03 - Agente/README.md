@@ -1,6 +1,8 @@
 # 03 - Agente
 
-O atendente da Vida+ Saúde recebe dois tipos de pergunta: as de regra ("qual o prazo de uma ressonância?"), que estão nos PDFs da operadora, e as de número ("quantas ressonâncias estão em análise agora?"), que estão nas suas tabelas. Neste módulo você publica um **agente** que responde as duas: ele busca nos documentos com **AI Search** (RAG), consulta as tabelas com a **Genie** e lembra da conversa.
+O status das guias já está no Postgres. Agora vamos dar ao atendente alguém a quem perguntar.
+
+Ele recebe dois tipos de pergunta: as de regra ("qual o prazo de uma ressonância?"), que estão nos PDFs da operadora, e as de número ("quantas ressonâncias estão em análise agora?"), que estão nas suas tabelas. Neste módulo, você publica um **agente** que responde as duas: ele busca nos documentos com **AI Search** (RAG), consulta as tabelas com a **Genie** e lembra da conversa.
 
 ## Objetivo
 - Levar os PDFs para uma tabela de trechos, dentro do seu pipeline, e indexá-la no AI Search

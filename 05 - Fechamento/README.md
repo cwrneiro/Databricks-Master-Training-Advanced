@@ -1,6 +1,30 @@
 # 05 - Fechamento
 
+## 🎉 Parabéns!
+
+Você chegou ao fim do workshop e entregou, declarado em código, tudo o que o atendente da Vida+ Saúde precisa para responder *"qual o status da guia AUT-00058?"* e as dúvidas de regra.
+
+## O desafio da guia, resolvido
+
 De manhã, um evento de autorização era uma linha de JSON num Volume, com duplicatas, fora de ordem e às vezes inválido. Agora ele passa por um pipeline que limpa e consolida, chega ao Postgres em minutos e aparece na tela do atendente, que pode anotar o que o prestador disse e perguntar ao agente tanto a regra quanto o número.
+
+O ciclo que você aprendeu no módulo 1, e que agora roda sozinho:
+
+```mermaid
+flowchart LR
+    subgraph dev["dev: desenvolver"]
+        EDITAR["Editar o código<br/>na Git folder"] --> RUNDEV["Run job em dev"]
+        RUNDEV -->|validar vermelha| EDITAR
+    end
+    RUNDEV -->|validar verde| DEPLOY["Deploy em prod"]
+    subgraph prod["prod: a cada 10 min, sozinho"]
+        LOTE["Lote do gerador"] --> PIPE["pipeline"] --> VALIDAR["validar"] --> SYNC["sync_lakebase"] --> APP["App do atendente"]
+        PIPE --> AGENTE["Agente<br/>(Genie e AI Search)"] --> APP
+    end
+    DEPLOY --> LOTE
+```
+
+Em `dev`, o código é lido direto da Git folder, e você repete o ciclo até a `validar` ficar verde. Em `prod`, o deploy copia o código, e o schedule faz o resto: a cada lote, o pipeline atualiza as tabelas, a `validar` barra dados errados antes que cheguem ao Postgres, e o app e o agente acompanham.
 
 ## O que você construiu
 
@@ -11,7 +35,7 @@ De manhã, um evento de autorização era uma linha de JSON num Volume, com dupl
 | 03 - Agente | Trechos dos PDFs, índice de AI Search, model service, Genie space e o app do agente | RAG para o que está nos documentos, Genie para o que está nas tabelas. |
 | 04 - App | O app do atendente | O SP do app faz o que vale para todos; o token de quem está logado, o que depende de quem pergunta. |
 
-## A solução inteira em código
+### A solução inteira em código
 
 Quase tudo o que você subiu hoje está em três arquivos de configuração, mais o código:
 
@@ -127,25 +151,7 @@ env:
 
 Fica fora dos arquivos, feito à mão: o Genie space (pela UI) e, no Postgres, a `observacao_atendente` e os 3 GRANTs ao SP do app (pelos notebooks dos módulos 2 e 4).
 
-## O ciclo
-
-```mermaid
-flowchart LR
-    subgraph dev["dev: desenvolver"]
-        EDITAR["Editar o código<br/>na Git folder"] --> RUNDEV["Run job em dev"]
-        RUNDEV -->|validar vermelha| EDITAR
-    end
-    RUNDEV -->|validar verde| DEPLOY["Deploy em prod"]
-    subgraph prod["prod: a cada 10 min, sozinho"]
-        LOTE["Lote do gerador"] --> PIPE["pipeline"] --> VALIDAR["validar"] --> SYNC["sync_lakebase"] --> APP["App do atendente"]
-        PIPE --> AGENTE["Agente<br/>(Genie e AI Search)"] --> APP
-    end
-    DEPLOY --> LOTE
-```
-
-Em `dev`, o código é lido direto da Git folder, e você repete o ciclo até a `validar` ficar verde. Em `prod`, o deploy copia o código, e o schedule faz o resto: a cada lote, o pipeline atualiza as tabelas, a `validar` barra dados errados antes que cheguem ao Postgres, e o app e o agente acompanham.
-
-## Para onde ir depois
+## Continue a jornada 🚀
 
 ### Lakebase Change Data Feed: o caminho de volta
 Hoje, os dados vão do lakehouse para o Postgres. As observações que os atendentes gravam ficam só no Postgres: nenhum dashboard nem a Genie enxergam. O **Lakebase Change Data Feed** (Public Preview, antes chamado Lakehouse Sync) faz o caminho de volta: copia cada insert, update e delete de um schema do Postgres para tabelas Delta no Unity Catalog (`lb_<tabela>_history`), a cada ~15 s.
@@ -153,9 +159,9 @@ Hoje, os dados vão do lakehouse para o Postgres. As observações que os atende
 Com ele, a `observacao_atendente` vira `lb_observacao_atendente_history`, pode entrar no pipeline como mais uma bronze, e a Genie, com essa tabela no space, responderia "quais prestadores mais pedem prioridade?". Para ligar, o admin habilita o preview, as tabelas precisam de `REPLICA IDENTITY FULL`, e quem configura precisa de `CAN MANAGE` no projeto Lakebase.
 
 ### O que ficou só no guia
-- **CLI de bundles, `run_as` e CI/CD**: na 1.2, seção **O mesmo pelo CLI, e num CI**.
-- **Synced table Continuous**: na 2.1, seção **Triggered, Continuous ou Snapshot**.
-- **Structured Streaming "na mão"**: os comentários abaixo de cada bloco do pipeline, e a seção **Por que SDP é o padrão** da 1.2.
+- **CLI de bundles, `run_as` e CI/CD**: na 1.2, no bloco **💡 O mesmo pelo CLI, e num CI**.
+- **Synced table Continuous**: na 2.1, no bloco **💡 Triggered, Continuous ou Snapshot**.
+- **Structured Streaming "na mão"**: os comentários abaixo de cada bloco do pipeline, e o bloco **💡 Por que SDP é o padrão** da 1.2.
 - **Escrever o agente**: o projeto do módulo 3 nasceu de `agentbricks init --framework langgraph`. Para outro caso de uso, o caminho é o mesmo: trocar o prompt e as tools em `agent/agent.py` e `agent.toml`.
 - **Mudar o app**: o código está em `01 - Pipeline e bundle/src/app/` (`server/` em Node.js, `client/` em React). Edite, faça **Deploy** no bundle e **Deploy** na página do app (ou `databricks bundle run -t prod vida_saude`, que sobe o código pelo CLI).
 

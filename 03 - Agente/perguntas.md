@@ -1,8 +1,10 @@
-# Perguntas RAG vs Genie - Módulo 3 (agente)
+# Perguntas para o agente
 
-Este documento lista 5 perguntas que apenas o RAG (documentos PDF) pode responder e 5 que apenas o Genie (dados tabulares do generator) pode responder. As de RAG têm resposta exata e fonte no PDF. As da Genie têm faixas, porque os dados chegam ao longo do dia, e um snippet Python para recalcular.
+Copie uma pergunta de cada vez para o chat do agente (módulo 3) ou do app (módulo 4). As 5 primeiras só os documentos respondem (RAG), e as 5 últimas só as tabelas respondem (Genie).
 
-## Perguntas que APENAS RAG responde (dos PDFs)
+## Perguntas de documentos (RAG)
+
+A resposta é exata e vem de um PDF da operadora.
 
 ---
 
@@ -61,11 +63,9 @@ Este documento lista 5 perguntas que apenas o RAG (documentos PDF) pode responde
 
 ---
 
-## Perguntas que APENAS Genie responde (dos dados do generator)
+## Perguntas de tabelas (Genie)
 
-Os dados chegam o dia inteiro (42 lotes, um a cada 10 min), então as respostas da Genie dependem de quantos lotes já chegaram. A tabela traz o valor medido com 10 lotes (~1h40 depois da abertura), 20 lotes (~3h20) e 42 lotes (fim do dia), e a faixa entre o mínimo e o máximo observados. Com 42 lotes, os números são os finais do gerador.
-
-**Fonte**: tabela `silver_autorizacao_status` (estado final por `autorizacao_id`, só os eventos válidos), no Lakebase e no catálogo.
+Os dados chegam o dia inteiro (42 lotes, um a cada 10 min), então a resposta depende de quantos lotes já chegaram. A tabela traz o valor com 10 lotes (~1h40 depois da abertura), 20 lotes (~3h20) e 42 lotes (fim do dia). A fonte é a `silver_autorizacao_status`.
 
 | # | Pergunta | 10 lotes | 20 lotes | 42 lotes | Faixa |
 |---|---|---|---|---|---|
@@ -77,7 +77,11 @@ Os dados chegam o dia inteiro (42 lotes, um a cada 10 min), então as respostas 
 
 O total de autorizações cresce com os lotes: 554, 1.026 e 2.000.
 
-**Snippet Python para recalcular** com `k` lotes (rode em `00 - Setup and teardown/data/src/`):
+<details markdown="1">
+<summary>💡 Recalcular as respostas com <code>k</code> lotes</summary>
+
+Rode em `00 - Setup and teardown/data/src/`:
+
 ```python
 from generator import batches, generate_events, is_valid
 
@@ -112,24 +116,4 @@ aprovadas = sum(e["status"] == "aprovada" for e in auths)
 print(f"5. {100 * aprovadas / len(auths):.1f}% ({aprovadas}/{len(auths)})")
 ```
 
----
-
-## Notas para o módulo 3
-
-### RAG (Retrieval-Augmented Generation)
-- **Entrada**: Documentos PDF em linguagem natural
-- **Processamento**: Busca semântica, chunking, embedding e recuperação
-- **Saída**: Respostas sobre políticas, prazos, coberturas, procedimentos, regras de negócio
-- **Características**: Respostas citam documentos originais, rastreáveis
-
-### Genie (Tabular Data Intelligence)
-- **Entrada**: Tabelas estruturadas (`silver_autorizacao_status`, `gold_kpi_autorizacoes`)
-- **Processamento**: SQL queries, agregações, filtros
-- **Saída**: Métricas, distribuições, contagens, taxas, rankings de entidades
-- **Características**: Respostas baseadas em fatos observáveis do sistema em tempo real
-
-### Integração
-- O agente do módulo 3 combina ambas as estratégias:
-    - Consultas RAG para questões sobre políticas/regras (contexto fixo dos PDFs)
-    - Consultas Genie para questões sobre operação/status do sistema (contexto dinâmico)
-    - MCP gerenciado fornece Vector Search (RAG) e Genie (Databricks)
+</details>
