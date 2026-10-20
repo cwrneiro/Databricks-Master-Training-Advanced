@@ -20,10 +20,13 @@ site_dir: ../site
 
 # Fora do site: material interno do desenvolvimento, o node_modules do app e
 # os arquivos do template do agente (são para o agentbricks, não para o aluno).
+# As analogias.md são só da versão do cliente (mkdocs-cliente.yml, ADR-0004).
 # O resto (.py, .yml, .sql) fica: são os arquivos companheiros dos READMEs.
 exclude_docs: |
   requirements-docs.txt
   mkdocs.yml
+  mkdocs-cliente.yml
+  analogias.md
   CLAUDE.md
   CONTEXT.md
   /docs/
