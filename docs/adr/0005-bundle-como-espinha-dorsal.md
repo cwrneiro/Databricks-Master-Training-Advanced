@@ -10,7 +10,7 @@ O doc pede versionar e fazer deploy do pipeline inteiro como código. Os alunos 
 - Os targets são `dev` (`mode: development`, que prefixa o schema com `dev_<usuario>_` e pausa os triggers) e `prod` (`mode: production`, com `workspace.root_path` no home do usuário). A partir da promoção, o dia inteiro segue em `prod`, com a ressalva explícita de que o recomendado é desenvolver em `dev`.
 - Os módulos 2–4 adicionam recursos ao mesmo `databricks.yml` (sync Lakebase, chunking, índice, model service, grants, app). No fim do dia, um deploy sobe a solução inteira, menos o agente.
 - Exceção (ADR-0006): o app do agente fica fora do bundle. O deploy dele é `agentbricks deploy` pelo web terminal, porque o `agentbricks` cria lojas e um Runtime Store que o bundle não declara. O model service e os grants ao SP do agente ficam no bundle.
-- O CLI (`validate`, `deploy -t`) aparece como espelho só no guia, junto com `run_as` SP e CI (seção **O mesmo pelo CLI, e num CI** do README do módulo 1).
+- O CLI (`validate`, `deploy -t`) aparece como espelho só no guia, junto com `run_as` SP e CI (bloco 💡 **O mesmo pelo CLI, e num CI** da parte 1.2).
 
 Revisão (2026-10-16): sai o *Add existing* com bind (o pipeline e o job não são mais criados pela UI) e saem os notebooks de recuperação. O target `prod` entra no hands-on.
 

@@ -37,6 +37,17 @@ Prosa em PT-BR; código, nomes de tabelas e identificadores em inglês/snake_cas
 - **Model service do aluno**: `academydb.<aluno>.llm`, um model service do AI Gateway declarado no bundle que aponta para o Claude do `system.ai`. Existe para que o aluno, dono dele, possa concedê-lo ao SP do app do agente.
 - **Versão principal** / **versão do cliente**: o mesmo conteúdo. A versão do cliente só acrescenta a página `analogias.md` do módulo 01 (Kafka/K8s/Helm). Ver ADR-0004.
 
+## Convenções do guia
+
+O tom e a condução seguem o workshop de referência ([Databricks-Master-Training](https://github.com/CaduBettanim/Databricks-Master-Training)): clique → veja → porquê.
+
+- **README do módulo**: abre com um gancho "vamos" que retoma o módulo anterior, depois Objetivo, o diagrama "Como fica" e a lista das partes. Cada parte abre com uma frase do que ela faz.
+- **Passo**: título com verbo; logo abaixo, a linha `> Recurso · Recurso` com os recursos da plataforma usados; uma frase de introdução; cliques numerados, com os rótulos da UI em **negrito** e caminhos com `→`; depois, "Repare…", no máximo uma frase de porquê e um `>` de dica opcional. Fale com o aluno por "você".
+- **Código a colar** fica à vista, dentro do item da lista. As **saídas de erro** que o aluno precisa reconhecer também.
+- **👉** (`<details>`): respostas. Saídas de sucesso (`✅`, resultados esperados), a solução do 🎯 Desafio e os arquivos finais do fechamento.
+- **💡** (`<details>`): aprofundamentos. Os conceituais ficam no fim da parte; os que explicam o código de um passo (o que cada parte do YAML faz), logo abaixo dele.
+- **Render** (Python-Markdown): dois `>` seguidos viram um bloco só (separe com `<!-- -->`), e o número inicial de uma lista é ignorado (não quebre uma lista numerada com um parágrafo no meio). Lista de um item vira texto corrido.
+
 ## Site
 
 O repositório também é um site [Zensical](https://zensical.org), publicado em https://cwrneiro.github.io/Databricks-Master-Training-Advanced/ a cada push no `main`. Para ver localmente:
