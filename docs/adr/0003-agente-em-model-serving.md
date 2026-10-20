@@ -1,6 +1,6 @@
 # ADR-0003: Agente por aluno em Model Serving
 
-Status: **substituída** (2026-10-15). O spike 04 mostrou que `agents.deploy` não autentica no Lakebase Autoscaling, e o usuário decidiu mover o agente para Databricks Apps. Substituída pela ADR-0006 (Agent Runtime via `agentbricks`). Ver issue 04.
+Status: **substituída** (2026-10-15). Um spike mostrou que `agents.deploy` não autentica no Lakebase Autoscaling, e o usuário decidiu mover o agente para Databricks Apps. Substituída pela ADR-0006 (Agent Runtime via `agentbricks`).
 
 ## Contexto
 O app (módulo 6) precisa chamar o agente do aluno, e o agente usa memória no Lakebase. As alternativas eram um endpoint compartilhado ou o app chamar a Genie direto.
