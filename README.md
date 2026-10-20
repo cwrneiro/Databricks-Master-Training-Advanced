@@ -86,8 +86,8 @@ Quem escreve os lotes é o **gerador**, um job do instrutor, em `/Volumes/academ
 | **[05 - Fechamento](05%20-%20Fechamento/README.md)** | 10 min | A solução inteira em código, o ciclo de ponta a ponta e para onde ir depois. |
 
 ### Como os módulos funcionam
-- **Passos**: o roteiro, na ordem. Quase tudo é feito pela interface do Databricks.
-- **TODO**: 1 ou 2 por módulo. O README diz o que fazer, onde, e como saber que deu certo. A resposta fica num bloco **👉 Solução**, logo abaixo: tente antes de abrir.
+- **Partes e passos**: cada módulo se divide em partes (1.1, 1.2...), e os passos do roteiro seguem uma numeração só ao longo do módulo. Quase tudo é feito pela interface do Databricks.
+- **TODO**: 1 ou 2 por módulo. O guia diz o que fazer, onde, e como saber que deu certo. A resposta fica num bloco **👉 Solução**, logo abaixo: tente antes de abrir.
 - **Checkpoint**: uma célula de notebook com `assert` que confirma o estado esperado (✅ quando passa).
 - **🎯 Desafio**: opcional, para quem terminar antes.
 - **`dev` e `prod`**: no módulo 1, você testa em `dev` e promove para `prod`. Daqui em diante, o dia segue em `prod`, para ganhar tempo.
