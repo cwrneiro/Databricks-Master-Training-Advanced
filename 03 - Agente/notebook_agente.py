@@ -16,7 +16,15 @@
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC > ⚠️ Rode **só a primeira célula** abaixo e pare: o widget `aluno` aparece no topo do notebook. Preencha com o seu nome de aluno e só então use **Run all** (ou rode as células seguintes).
+
+# COMMAND ----------
+
 dbutils.widgets.text("aluno", "troque_pelo_seu_nome")
+
+# COMMAND ----------
+
 aluno = dbutils.widgets.get("aluno")  # o mesmo var.aluno do databricks.yml
 assert aluno != "troque_pelo_seu_nome", "Preencha o widget 'aluno' no topo do notebook com o seu nome de aluno."
 
