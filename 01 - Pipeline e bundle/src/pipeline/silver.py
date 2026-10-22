@@ -21,9 +21,9 @@ def eventos_validos():
 #     .where("autorizacao_id IS NOT NULL AND status IN ('solicitada', 'em_analise', 'aprovada', 'negada')"))
 
 
-# TODO (passo 9): esta tabela deveria ter uma linha por autorização, com o status atual.
+# TODO (passo 10): esta tabela deveria ter uma linha por autorização, com o status atual.
 # Em append, ela recebe uma linha por evento, duplicatas incluídas, e a task validar falha.
-# Troque o bloco abaixo por AUTO CDC (SCD1). A solução está no passo 9 do guia do módulo.
+# Troque o bloco abaixo por AUTO CDC (SCD1). A solução está no passo 10 do guia do módulo.
 @dp.table(
     comment="Status atual de cada autorização.",
     table_properties={"delta.enableChangeDataFeed": "true"},

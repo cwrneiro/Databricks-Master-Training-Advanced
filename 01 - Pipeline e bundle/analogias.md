@@ -10,11 +10,11 @@ Para quem já trabalha com Kafka, Kubernetes e Helm: o que cada peça deste mód
 | Tópico | A pasta `raw/autorizacao_eventos` no Volume e, depois do pipeline, cada tabela Delta com Change Data Feed (CDF) | Passo 1; `delta.enableChangeDataFeed` na silver |
 | Consumer | A streaming table que lê a origem: a bronze (Auto Loader) e a silver | `bronze.py`, `silver.py` |
 | Offset do consumer group | O checkpoint de cada streaming table, que o pipeline guarda por você | Comentários `Equivalente em Structured Streaming` |
-| Tópico compactado (último valor por chave) | A silver com `AUTO CDC` SCD1: uma linha por `autorizacao_id`, com o status atual | Passo 9 |
-| Consumer que deduplica e reordena por timestamp | `AUTO CDC` com `sequence_by="event_ts"` | Passo 9 |
+| Tópico compactado (último valor por chave) | A silver com `AUTO CDC` SCD1: uma linha por `autorizacao_id`, com o status atual | Passo 10 |
+| Consumer que deduplica e reordena por timestamp | `AUTO CDC` com `sequence_by="event_ts"` | Passo 10 |
 | Consumer que chama um sistema externo | `foreach_batch_sink`, com MERGE idempotente pelo `batch_id` | `notificacoes.py` |
-| Reprocessar do offset zero (`--reset-offsets --to-earliest`) | Full refresh do pipeline | Passo 10 |
-| Validação de schema no Schema Registry | Expectations: na bronze só registram (warn), na `eventos_validos` descartam (drop) | Passo 8 |
+| Reprocessar do offset zero (`--reset-offsets --to-earliest`) | Full refresh do pipeline | Passo 11 |
+| Validação de schema no Schema Registry | Expectations: na bronze só registram (warn), na `eventos_validos` descartam (drop) | Passos 8 e 9 |
 
 ## Job: Kubernetes → Lakeflow Jobs
 
@@ -32,10 +32,10 @@ Para quem já trabalha com Kafka, Kubernetes e Helm: o que cada peça deste mód
 |---|---|---|
 | Chart | O bundle: `databricks.yml` + `resources/` + `src/` | Passo 4 |
 | `values.yaml` | `variables` do `databricks.yml` | Passo 5 |
-| `values-dev.yaml` / `values-prod.yaml` | Targets `dev` e `prod` | Passos 6 e 11 |
+| `values-dev.yaml` / `values-prod.yaml` | Targets `dev` e `prod` | Passos 6 e 12 |
 | `--set chave=valor` | `--var aluno=acarneiro` | **O mesmo pelo CLI, e num CI** |
 | `helm lint` / `helm template` | `databricks bundle validate` | **O mesmo pelo CLI, e num CI** |
-| `helm upgrade --install` | `databricks bundle deploy` (o **Deploy** do painel) | Passos 6 e 11 |
+| `helm upgrade --install` | `databricks bundle deploy` (o **Deploy** do painel) | Passos 6 e 12 |
 | Namespace por ambiente | Prefixos do `mode: development` (`dev_<usuario>_`, `[dev <usuario>]`) | Passo 6 |
 | ServiceAccount do pipeline de CD | `run_as` com um service principal | **O mesmo pelo CLI, e num CI** |
 
