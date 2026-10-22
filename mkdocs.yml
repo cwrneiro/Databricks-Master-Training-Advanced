@@ -10,7 +10,7 @@ nav:
   - 02 - Lakebase:
       - "02 - Lakebase/README.md"
       - "02 - Lakebase/2.1 - Synced table no bundle.md"
-      - "02 - Lakebase/2.2 - Populando a base.md"
+      - "02 - Lakebase/2.2 - Explorando o Lakebase.md"
   - 03 - Agente:
       - "03 - Agente/README.md"
       - "03 - Agente/3.1 - AI Search.md"

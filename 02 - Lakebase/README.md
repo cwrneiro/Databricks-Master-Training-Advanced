@@ -23,4 +23,4 @@ O projeto Lakebase `edia-workshop` já existe: o instrutor criou um para a turma
 ## Partes
 
 - [2.1 - Synced table no bundle](2.1%20-%20Synced%20table%20no%20bundle.md)
-- [2.2 - Populando a base](2.2%20-%20Populando%20a%20base.md)
+- [2.2 - Explorando o Lakebase](2.2%20-%20Explorando%20o%20Lakebase.md)
