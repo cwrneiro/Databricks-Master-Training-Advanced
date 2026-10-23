@@ -1,0 +1,9 @@
+/* Paleta Databricks (lava red) — sobrescreve as cores do tema Material.
+   Escopo por esquema para valer tanto no modo claro quanto no escuro. */
+[data-md-color-scheme="default"],
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #FF3621;
+  --md-primary-fg-color--light: #FF5C4D;
+  --md-primary-fg-color--dark:  #C4260F;
+  --md-accent-fg-color:         #FF3621;
+}

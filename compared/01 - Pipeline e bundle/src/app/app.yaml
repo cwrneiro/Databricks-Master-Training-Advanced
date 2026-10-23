@@ -1,0 +1,8 @@
+# Como o Databricks inicia o app. O deploy pela página do app lê este arquivo.
+command: [npm, run, start]
+env:
+  # valueFrom: o valor vem de um recurso do app, declarado no bundle (resources/app.app.yml).
+  - name: LAKEBASE_ENDPOINT
+    valueFrom: postgres
+  - name: AGENT_APP
+    valueFrom: agente

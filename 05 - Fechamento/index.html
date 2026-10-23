@@ -1,0 +1,1404 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Workshop hands-on de 1 dia, do evento de autorização ao app, com bundle, pipeline, Lakebase, agente e app">
+      
+      
+      
+        <link rel="canonical" href="https://cwrneiro.github.io/Databricks-Master-Training-Advanced/05%20-%20Fechamento/">
+      
+      
+      
+        <link rel="prev" href="../04%20-%20App/4.2%20-%20Usando%20o%20app/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/databricks-symbol.svg">
+      <meta name="generator" content="zensical-0.0.72">
+    
+    
+      
+        <title>05 - Fechamento - Engenharia de Dados e IA no Databricks</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/classic/main.94dd801d.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/classic/palette.813d4b3f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Pular para conteúdo
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="./.." title="Engenharia de Dados e IA no Databricks" class="md-header__button md-logo" aria-label="Engenharia de Dados e IA no Databricks" data-md-component="logo">
+      
+  <img src="../assets/databricks-lockup-white.svg" alt="Engenharia de Dados e IA no Databricks">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <span class="md-visually-hidden">Navegação</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engenharia de Dados e IA no Databricks
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              05 - Fechamento
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <span class="md-visually-hidden">Pesquisar</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Pesquisar">
+  <button type="button" class="md-search__button">
+    Pesquisar
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/cwrneiro/Databricks-Master-Training-Advanced" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Engenharia de Dados e IA no Databricks" class="md-nav__button md-logo" aria-label="Engenharia de Dados e IA no Databricks" data-md-component="logo">
+      
+  <img src="../assets/databricks-lockup-white.svg" alt="Engenharia de Dados e IA no Databricks">
+
+    </a>
+    Engenharia de Dados e IA no Databricks
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/cwrneiro/Databricks-Master-Training-Advanced" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Início
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../01%20-%20Pipeline%20e%20bundle/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  01 - Pipeline e bundle
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  01 - Pipeline e bundle
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01%20-%20Pipeline%20e%20bundle/1.1%20-%20Deploy%20do%20bundle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  1.1 - Deploy do bundle
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01%20-%20Pipeline%20e%20bundle/1.2%20-%20Job%20e%20pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  1.2 - Job e pipeline
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../02%20-%20Lakebase/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  02 - Lakebase
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  02 - Lakebase
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02%20-%20Lakebase/2.1%20-%20Synced%20table%20no%20bundle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  2.1 - Synced table no bundle
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02%20-%20Lakebase/2.2%20-%20Explorando%20o%20Lakebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  2.2 - Explorando o Lakebase
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../03%20-%20Agente/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  03 - Agente
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  03 - Agente
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03%20-%20Agente/3.1%20-%20AI%20Search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  3.1 - AI Search
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03%20-%20Agente/3.2%20-%20Genie%20space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  3.2 - Genie space
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03%20-%20Agente/3.3%20-%20Deploy%20do%20agente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  3.3 - Deploy do agente
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03%20-%20Agente/3.4%20-%20Testando%20o%20agente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  3.4 - Testando o agente
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../04%20-%20App/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  04 - App
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  04 - App
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04%20-%20App/4.1%20-%20App%20no%20bundle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  4.1 - App no bundle
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04%20-%20App/4.2%20-%20Usando%20o%20app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  4.2 - Usando o app
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+        <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  05 - Fechamento
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  05 - Fechamento
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parabens" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🎉 Parabéns!
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-desafio-da-guia-resolvido" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        O desafio da guia, resolvido
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-voce-construiu" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        O que você construiu
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O que você construiu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-solucao-inteira-em-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        A solução inteira em código
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continue-a-jornada" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Continue a jornada 🚀
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continue a jornada 🚀">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lakebase-change-data-feed-o-caminho-de-volta" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Lakebase Change Data Feed: o caminho de volta
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-que-ficou-so-no-guia" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        O que ficou só no guia
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parabens" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🎉 Parabéns!
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-desafio-da-guia-resolvido" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        O desafio da guia, resolvido
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-voce-construiu" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        O que você construiu
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O que você construiu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-solucao-inteira-em-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        A solução inteira em código
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continue-a-jornada" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Continue a jornada 🚀
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continue a jornada 🚀">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lakebase-change-data-feed-o-caminho-de-volta" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Lakebase Change Data Feed: o caminho de volta
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-que-ficou-so-no-guia" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        O que ficou só no guia
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+  
+  
+
+
+<h1 id="05-fechamento">05 - Fechamento</h1>
+<h2 id="parabens">🎉 Parabéns!</h2>
+<p>Você chegou ao fim do workshop e entregou, declarado em código, tudo o que o atendente da Vida+ Saúde precisa para responder <em>"qual o status da guia AUT-00058?"</em> e as dúvidas de regra.</p>
+<h2 id="o-desafio-da-guia-resolvido">O desafio da guia, resolvido</h2>
+<p>De manhã, um evento de autorização era uma linha de JSON num Volume, com duplicatas, fora de ordem e às vezes inválido. Agora ele passa por um pipeline que limpa e consolida, chega ao Postgres em minutos e aparece na tela do atendente, que pode anotar o que o prestador disse e perguntar ao agente tanto a regra quanto o número.</p>
+<p>O ciclo que você aprendeu no módulo 1, e que agora roda sozinho:</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph dev["dev: desenvolver"]
+        EDITAR["Editar o código&lt;br/&gt;na Git folder"] --&gt; RUNDEV["Run job em dev"]
+        RUNDEV --&gt;|validar vermelha| EDITAR
+    end
+    RUNDEV --&gt;|validar verde| DEPLOY["Deploy em prod"]
+    subgraph prod["prod: a cada 10 min, sozinho"]
+        LOTE["Lote do gerador"] --&gt; PIPE["pipeline"] --&gt; VALIDAR["validar"] --&gt; SYNC["sync_lakebase"] --&gt; APP["App do atendente"]
+        PIPE --&gt; AGENTE["Agente&lt;br/&gt;(Genie e AI Search)"] --&gt; APP
+    end
+    DEPLOY --&gt; LOTE</code></pre>
+<p>Em <code>dev</code>, o código é lido direto da Git folder, e você repete o ciclo até a <code>validar</code> ficar verde. Em <code>prod</code>, o deploy copia o código, e o schedule faz o resto: a cada lote, o pipeline atualiza as tabelas, a <code>validar</code> barra dados errados antes que cheguem ao Postgres, e o app e o agente acompanham.</p>
+<h2 id="o-que-voce-construiu">O que você construiu</h2>
+<table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th>Entrega</th>
+<th>A ideia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 - Pipeline e bundle</td>
+<td>Pipeline bronze → silver → gold e job, em <code>dev</code> e em <code>prod</code></td>
+<td>Você descreve <strong>o que</strong> cada tabela é; o pipeline cuida do <strong>como</strong>. <code>AUTO CDC</code> transforma eventos em status atual.</td>
+</tr>
+<tr>
+<td>02 - Lakebase</td>
+<td>Synced table no Postgres e a tabela de observações</td>
+<td>O lakehouse continua a fonte da verdade, e o Postgres serve o app em milissegundos.</td>
+</tr>
+<tr>
+<td>03 - Agente</td>
+<td>Trechos dos PDFs, índice de AI Search, model service, Genie space e o app do agente</td>
+<td>RAG para o que está nos documentos, Genie para o que está nas tabelas.</td>
+</tr>
+<tr>
+<td>04 - App</td>
+<td>O app do atendente</td>
+<td>O SP do app faz o que vale para todos; o token de quem está logado, o que depende de quem pergunta.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a-solucao-inteira-em-codigo">A solução inteira em código</h3>
+<p>Quase tudo o que você subiu hoje está em três arquivos de configuração, mais o código:</p>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>O que declara</th>
+<th>Como sobe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01 - Pipeline e bundle/databricks.yml</code> (+ <code>resources/</code>)</td>
+<td>O que existe: schema, pipeline, job, synced table, model service, índice, app, e as permissões do SP do agente</td>
+<td><strong>Deploy</strong> do bundle</td>
+</tr>
+<tr>
+<td><code>03 - Agente/agente/agent.toml</code></td>
+<td>O agente: lojas de sessões e de memória, experimento de tracing e a tool da Genie</td>
+<td><code>agentbricks deploy</code></td>
+</tr>
+<tr>
+<td><code>01 - Pipeline e bundle/src/app/app.yaml</code></td>
+<td>Como o app inicia e de quais recursos do bundle vêm as variáveis (<code>valueFrom</code>)</td>
+<td><strong>Deploy</strong> na página do app</td>
+</tr>
+</tbody>
+</table>
+<p>O bundle, no fim do dia:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>01 - Pipeline e bundle/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── databricks.yml                             # variáveis (aluno, agent_sp) e targets dev/prod
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── resources/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── aluno.schema.yml                       # módulo 1; grants ao SP do agente no módulo 3
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   ├── autorizacoes.pipeline.yml              # módulo 1
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── autorizacoes.job.yml                   # módulo 1; task sync_lakebase no módulo 2
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── autorizacao_status.synced_table.yml    # módulo 2
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── llm.model_service.yml                  # módulo 3
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── documentos.index.yml                   # módulo 3
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   └── app.app.yml                            # módulo 4
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>└── src/
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    ├── pipeline/                              # bronze.py, silver.py, gold.py, notificacoes.py; documentos.sql no módulo 3
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ├── validar.py
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    └── app/                                   # o app do atendente, com o app.yaml
+</code></pre></div>
+<details>
+<summary>👉 O <code>databricks.yml</code> final</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Bundle do workshop: tudo o que você sobe no Databricks, declarado em código.</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Ele cresce ao longo do dia: o módulo 1 traz o schema, o pipeline e o job.</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">bundle</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vida_saude</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nt">include</span><span class="p">:</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resources/*.yml</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nt">variables</span><span class="p">:</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">aluno</span><span class="p">:</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Seu nome de aluno (primeira letra do nome + sobrenome, por exemplo acarneiro). Vira o nome do seu schema.</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">acarneiro</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="nt">catalog</span><span class="p">:</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Catálogo do workshop. Não mude.</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">academydb</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nt">eventos_path</span><span class="p">:</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pasta onde o gerador escreve os lotes de eventos. Não mude.</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Volumes/academydb/shared/raw/autorizacao_eventos</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="nt">agent_sp</span><span class="p">:</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application ID do service principal do app do seu agente (agent-bricks-&lt;aluno&gt;).</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">00000000-0000-0000-0000-000000000000</span><span class="w"> </span><span class="c1"># o ID que a seção 3 do módulo 3 mostrou</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="nt">targets</span><span class="p">:</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">  </span><span class="c1"># dev: prefixa o schema com dev_&lt;usuario&gt;_, os jobs e pipelines com [dev &lt;usuario&gt;] e pausa os schedules.</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">  </span><span class="nt">dev</span><span class="p">:</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">development</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">  </span><span class="c1"># prod: nomes sem prefixo e schedules ligados.</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">  </span><span class="nt">prod</span><span class="p">:</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="nt">workspace</span><span class="p">:</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">      </span><span class="nt">root_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}</span>
+</code></pre></div>
+<p>O <code>include: resources/*.yml</code> é o que fez cada arquivo novo dos módulos 2–4 entrar no bundle sem você mexer aqui.</p>
+</details>
+<details>
+<summary>👉 O <code>agent.toml</code> e o <code>app.yaml</code></summary>
+<p><code>03 - Agente/agente/agent.toml</code>, depois do <code>sed</code> e do <code>agentbricks tools add</code> do módulo 3:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">schema_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">[agent]</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">framework</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"langgraph"</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"agentbricks"</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">[memory_store]</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"edia-acarneiro-memoria"</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">[session_store]</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"edia-acarneiro-sessoes"</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">[tracing]</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">experiment_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/Shared/agentbricks_traces/edia-acarneiro"</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">[[tools]]</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"genie_agent"</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"user"</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">kind</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">"genie_agent"</span><span class="p">,</span><span class="w"> </span><span class="n">space_id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">"&lt;id do Genie space&gt;"</span><span class="p">}</span>
+</code></pre></div>
+<p><code>01 - Pipeline e bundle/src/app/app.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">npm</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">run</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">start</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">env</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LAKEBASE_ENDPOINT</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AGENT_APP</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">agente</span>
+</code></pre></div>
+<p><code>postgres</code> e <code>agente</code> são os nomes dos recursos que o <code>app.app.yml</code> do bundle declara. O bundle diz <strong>o que</strong> o app pode acessar; o <code>app.yaml</code>, <strong>como</strong> o código recebe esses valores.</p>
+</details>
+<p>Fica fora dos arquivos, feito à mão: o Genie space (pela UI) e, no Postgres, a <code>observacao_atendente</code> e os 3 GRANTs ao SP do app (pelos notebooks dos módulos 2 e 4).</p>
+<h2 id="continue-a-jornada">Continue a jornada 🚀</h2>
+<h3 id="lakebase-change-data-feed-o-caminho-de-volta">Lakebase Change Data Feed: o caminho de volta</h3>
+<p>Hoje, os dados vão do lakehouse para o Postgres. As observações que os atendentes gravam ficam só no Postgres: nenhum dashboard nem a Genie enxergam. O <strong>Lakebase Change Data Feed</strong> (Public Preview, antes chamado Lakehouse Sync) faz o caminho de volta: copia cada insert, update e delete de um schema do Postgres para tabelas Delta no Unity Catalog (<code>lb_&lt;tabela&gt;_history</code>), a cada ~15 s.</p>
+<p>Com ele, a <code>observacao_atendente</code> vira <code>lb_observacao_atendente_history</code>, pode entrar no pipeline como mais uma bronze, e a Genie, com essa tabela no space, responderia "quais prestadores mais pedem prioridade?". Para ligar, o admin habilita o preview, as tabelas precisam de <code>REPLICA IDENTITY FULL</code>, e quem configura precisa de <code>CAN MANAGE</code> no projeto Lakebase.</p>
+<h3 id="o-que-ficou-so-no-guia">O que ficou só no guia</h3>
+<ul>
+<li><strong>CLI de bundles, <code>run_as</code> e CI/CD</strong>: na 1.2, no bloco <strong>💡 O mesmo pelo CLI, e num CI</strong>.</li>
+<li><strong>Synced table Continuous</strong>: na 2.1, no bloco <strong>💡 Triggered, Continuous ou Snapshot</strong>.</li>
+<li><strong>Structured Streaming "na mão"</strong>: os comentários abaixo de cada bloco do pipeline, e o bloco <strong>💡 Por que SDP é o padrão</strong> da 1.2.</li>
+<li><strong>Escrever o agente</strong>: o projeto do módulo 3 nasceu de <code>agentbricks init --framework langgraph</code>. Para outro caso de uso, o caminho é o mesmo: trocar o prompt e as tools em <code>agent/agent.py</code> e <code>agent.toml</code>.</li>
+<li><strong>Mudar o app</strong>: o código está em <code>01 - Pipeline e bundle/src/app/</code> (<code>server/</code> em Node.js, <code>client/</code> em React). Edite, faça <strong>Deploy</strong> no bundle e <strong>Deploy</strong> na página do app (ou <code>databricks bundle run -t prod vida_saude</code>, que sobe o código pelo CLI).</li>
+</ul>
+<hr />
+<p>Obrigado por participar, e bons projetos! 👏</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../04%20-%20App/4.2%20-%20Usando%20o%20app/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 4.2 - Usando o app">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                4.2 - Usando o app
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="/Databricks-Master-Training-Advanced/00%20-%20Setup%20and%20teardown/">00 - Setup and teardown</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      
+<div class="md-progress" data-md-component="progress" role="progressbar" aria-label="Loading"></div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.instant","navigation.instant.progress","navigation.top","navigation.footer","navigation.indexes","search.suggest","content.code.copy"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copiado para área de transferência","clipboard.copy":"Copiar para área de transferência","clipboard.error":"Could not copy to clipboard","search.result.more.one":"mais 1 nesta página","search.result.more.other":"# mais nesta página","search.result.none":"Nenhum documento encontrado","search.result.one":"1 documento encontrado","search.result.other":"# documentos encontrados","search.result.placeholder":"Digite para iniciar a busca","search.result.term.missing":"Ausente","select.version":"Selecione a versão"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.10ee5ab6.min.js"></script>
+      
+    
+  </body>
+</html>

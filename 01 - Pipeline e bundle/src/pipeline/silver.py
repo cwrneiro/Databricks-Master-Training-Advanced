@@ -1,0 +1,57 @@
+from pyspark import pipelines as dp
+
+# Na silver, as mesmas regras da bronze descartam as linhas inválidas (drop).
+REGRAS = {
+    "autorizacao_id_presente": "autorizacao_id IS NOT NULL",
+    "status_no_dominio": "status IN ('solicitada', 'em_analise', 'aprovada', 'negada')",
+}
+
+
+@dp.table(comment="Só os eventos válidos, um por mudança de status. Pode repetir eventos (duplicatas do modo caos).")
+@dp.expect_all_or_drop(REGRAS)
+def silver_autorizacao_eventos():
+    return spark.readStream.table("bronze_autorizacao_eventos").select(
+        "event_id", "autorizacao_id", "beneficiario_id", "prestador_id", "procedimento", "status", "event_ts"
+    )
+
+# --- Equivalente em Structured Streaming ---
+# Na mão, você filtra com um where e grava numa tabela Delta por conta própria (a expectation
+# com drop vira esse filtro):
+#
+# eventos_validos = (spark.readStream.table("academydb.<aluno>.bronze_autorizacao_eventos")
+#     .where("autorizacao_id IS NOT NULL AND status IN ('solicitada', 'em_analise', 'aprovada', 'negada')"))
+# (eventos_validos.writeStream
+#     .option("checkpointLocation", "/Volumes/academydb/<aluno>/checkpoints/silver_eventos")
+#     .trigger(availableNow=True)
+#     .toTable("academydb.<aluno>.silver_autorizacao_eventos"))
+
+
+# TODO (passo 10): esta tabela deveria ter uma linha por autorização, com o status atual.
+# Em append, ela recebe uma linha por evento, duplicatas incluídas, e a task validar falha.
+# Troque o bloco abaixo por AUTO CDC (SCD1). A solução está no passo 10 do guia do módulo.
+@dp.table(
+    comment="Status atual de cada autorização.",
+    table_properties={"delta.enableChangeDataFeed": "true"},
+)
+def silver_autorizacao_status():
+    return spark.readStream.table("silver_autorizacao_eventos")
+
+# --- Equivalente em Structured Streaming ---
+# O AUTO CDC faz por você o MERGE de cada micro-batch: deduplica, ignora eventos que chegam
+# atrasados com event_ts menor que o já gravado e atualiza o status da autorização.
+#
+# def upsert(df, batch_id):
+#     ultimo = (df.withColumn("n", F.row_number().over(
+#                   Window.partitionBy("autorizacao_id").orderBy(F.col("event_ts").desc())))
+#               .where("n = 1").drop("n"))
+#     (DeltaTable.forName(df.sparkSession, "academydb.<aluno>.silver_autorizacao_status").alias("t")
+#         .merge(ultimo.alias("s"), "t.autorizacao_id = s.autorizacao_id")
+#         .whenMatchedUpdateAll(condition="s.event_ts > t.event_ts")
+#         .whenNotMatchedInsertAll()
+#         .execute())
+#
+# (eventos_validos.writeStream
+#     .foreachBatch(upsert)
+#     .option("checkpointLocation", "/Volumes/academydb/<aluno>/checkpoints/silver")
+#     .trigger(availableNow=True)
+#     .start())

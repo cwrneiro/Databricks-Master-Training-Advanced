@@ -1,0 +1,15 @@
+resources:
+  pipelines:
+    autorizacoes:
+      name: autorizacoes_${var.aluno}
+      catalog: ${var.catalog}
+      schema: ${resources.schemas.aluno.name}
+      serverless: true
+      root_path: ../src/pipeline
+      libraries:
+        - glob:
+            include: ../src/pipeline/**
+      configuration:
+        eventos_path: ${var.eventos_path}
+        catalog: ${var.catalog}
+        schema: ${resources.schemas.aluno.name}
