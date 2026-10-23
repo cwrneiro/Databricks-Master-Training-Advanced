@@ -13,6 +13,7 @@ Prosa em PT-BR; código, nomes de tabelas e identificadores em inglês/snake_cas
 - **Prestador**: hospital, clínica ou médico que solicita a autorização.
 - **Autorização** (autorização prévia, ou "guia"): pedido do prestador para realizar um procedimento num beneficiário. Chave: `autorizacao_id`.
 - **Evento de autorização**: uma mudança de status de uma autorização (`solicitada → em_analise → aprovada | negada`). É append-only. Várias por autorização.
+- **Eventos válidos**: os eventos de autorização que passam nas regras de qualidade (`silver_autorizacao_eventos`, append). Alimentam o status atual, a gold e as notificações.
 - **Status atual**: o último status de cada autorização (`silver_autorizacao_status`, SCD1). É o que o app consulta.
 - **Documentos da operadora**: PDFs sintéticos (rol de cobertura, regras de autorização prévia, prazos de atendimento, FAQ do prestador) que alimentam o RAG.
 - **Trechos dos documentos** (chunks): um bloco de texto de um PDF, extraído com `ai_parse_document` pelo pipeline do aluno (`documentos_chunks`). É o que o índice de AI Search busca.

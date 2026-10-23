@@ -1,14 +1,13 @@
 from pyspark import pipelines as dp
 from pyspark.sql import functions as F
 
-VALIDO = "autorizacao_id IS NOT NULL AND status IN ('solicitada', 'em_analise', 'aprovada', 'negada')"
-
 
 @dp.materialized_view(comment="KPIs por procedimento e prestador: volume, taxa de negativa e tempo médio de aprovação.")
 def gold_kpi_autorizacoes():
     por_autorizacao = (
-        spark.read.table("bronze_autorizacao_eventos")
-        .where(VALIDO)
+        # Lê os eventos (não o status atual): o tempo de aprovação precisa dos timestamps de cada status.
+        # min, max e max_by não mudam com eventos repetidos, então as duplicatas da silver não contam em dobro.
+        spark.read.table("silver_autorizacao_eventos")
         .groupBy("autorizacao_id", "procedimento", "prestador_id")
         .agg(
             F.max_by("status", "event_ts").alias("status"),

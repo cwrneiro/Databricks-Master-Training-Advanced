@@ -7,18 +7,23 @@ REGRAS = {
 }
 
 
-@dp.temporary_view(comment="Só os eventos válidos. Não é publicada no catálogo.")
+@dp.table(comment="Só os eventos válidos, um por mudança de status. Pode repetir eventos (duplicatas do modo caos).")
 @dp.expect_all_or_drop(REGRAS)
-def eventos_validos():
+def silver_autorizacao_eventos():
     return spark.readStream.table("bronze_autorizacao_eventos").select(
         "event_id", "autorizacao_id", "beneficiario_id", "prestador_id", "procedimento", "status", "event_ts"
     )
 
 # --- Equivalente em Structured Streaming ---
-# Uma view temporária não grava nada: é só um DataFrame reaproveitado pelas tabelas abaixo.
+# Na mão, você filtra com um where e grava numa tabela Delta por conta própria (a expectation
+# com drop vira esse filtro):
 #
 # eventos_validos = (spark.readStream.table("academydb.<aluno>.bronze_autorizacao_eventos")
 #     .where("autorizacao_id IS NOT NULL AND status IN ('solicitada', 'em_analise', 'aprovada', 'negada')"))
+# (eventos_validos.writeStream
+#     .option("checkpointLocation", "/Volumes/academydb/<aluno>/checkpoints/silver_eventos")
+#     .trigger(availableNow=True)
+#     .toTable("academydb.<aluno>.silver_autorizacao_eventos"))
 
 
 # TODO (passo 10): esta tabela deveria ter uma linha por autorização, com o status atual.
@@ -29,7 +34,7 @@ def eventos_validos():
     table_properties={"delta.enableChangeDataFeed": "true"},
 )
 def silver_autorizacao_status():
-    return spark.readStream.table("eventos_validos")
+    return spark.readStream.table("silver_autorizacao_eventos")
 
 # --- Equivalente em Structured Streaming ---
 # O AUTO CDC faz por você o MERGE de cada micro-batch: deduplica, ignora eventos que chegam

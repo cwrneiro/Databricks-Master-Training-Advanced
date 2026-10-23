@@ -14,7 +14,7 @@ Para quem já trabalha com Kafka, Kubernetes e Helm: o que cada peça deste mód
 | Consumer que deduplica e reordena por timestamp | `AUTO CDC` com `sequence_by="event_ts"` | Passo 10 |
 | Consumer que chama um sistema externo | `foreach_batch_sink`, com MERGE idempotente pelo `batch_id` | `notificacoes.py` |
 | Reprocessar do offset zero (`--reset-offsets --to-earliest`) | Full refresh do pipeline | Passo 11 |
-| Validação de schema no Schema Registry | Expectations: na bronze só registram (warn), na `eventos_validos` descartam (drop) | Passos 8 e 9 |
+| Validação de schema no Schema Registry | Expectations: na bronze só registram (warn), na `silver_autorizacao_eventos` descartam (drop) | Passos 8 e 9 |
 
 ## Job: Kubernetes → Lakeflow Jobs
 

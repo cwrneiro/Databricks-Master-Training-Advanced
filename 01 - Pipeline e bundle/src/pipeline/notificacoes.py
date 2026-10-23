@@ -29,7 +29,7 @@ def notif_autorizacao_negada_sink(df, batch_id):
 @dp.append_flow(target="notif_autorizacao_negada_sink")
 def autorizacoes_negadas():
     return (
-        spark.readStream.table("eventos_validos")
+        spark.readStream.table("silver_autorizacao_eventos")
         .where("status = 'negada'")
         .select("autorizacao_id", "prestador_id", "procedimento", F.col("event_ts").alias("negada_em"))
     )
