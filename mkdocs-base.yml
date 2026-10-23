@@ -82,6 +82,8 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - admonition
+  # Respeita o número inicial de listas numeradas (continuam após um comentário).
+  - sane_lists
   - pymdownx.highlight:
       anchor_linenums: true
   # Blocos ```mermaid viram diagramas (o GitHub renderiza os mesmos blocos).
